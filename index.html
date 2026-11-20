@@ -176,8 +176,15 @@ html[dir="ltr"] .intro i::after{transform-origin:left center}
 .about h3{margin:34px 0 6px;font-family:var(--display);font-weight:500;font-size:28px}
 .about p{margin:0 0 14px;font-size:17px;line-height:2.05;font-weight:300}
 .about .poem{font-family:var(--poem);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.9;color:var(--fx-light);margin-bottom:22px}
-.skills{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;padding:0;list-style:none}
-.skills li{padding:3px 14px;border:1px solid var(--line2);font-size:13px;color:var(--muted)}
+.marq{margin:18px 0 0;display:grid;gap:10px;direction:ltr}
+.mq-row{overflow:hidden;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.mq-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq-row.rev .mq-track{animation-direction:reverse;animation-duration:46s}
+.mq-row:hover .mq-track{animation-play-state:paused}
+.mq-item{flex:none;padding:12px 26px;font-size:15px;color:var(--muted);white-space:nowrap;border-inline-end:1px solid var(--line2)}
+.mq-row.tool .mq-item{color:var(--paper);font-size:17px;letter-spacing:.04em}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none;flex-wrap:wrap;width:auto}.mq-item[aria-hidden]{display:none}}
 .role{margin:16px 0 0;font-size:15px;letter-spacing:.08em;color:var(--paper);font-weight:500}
 .svc{display:grid;gap:0;margin:8px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
 .svc li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
@@ -315,9 +322,7 @@ body:not(.mode-list) .list{display:none}
       <h3 data-k="svcH">ما أقدّمه</h3>
       <ul class="svc" id="svc"></ul>
       <h3 data-k="toolsH">الأدوات والمهارات</h3>
-      <ul class="skills" aria-label="Skills">
-        <li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Video Editing</li><li>Copywriting</li>
-      </ul>
+      <div class="marq" id="skills" aria-label="Skills"></div>
       <h3 data-k="talkH">تعالَ نتكلم</h3>
       <form class="req" id="req">
         <label><span data-k="fName">الاسم</span><input id="fName" autocomplete="name"></label>
@@ -387,7 +392,7 @@ var UI = {
     heroEy: 'أماني · مصممة جرافيك', heroH: 'طبقة بعد طبقة،<br>يظهر المعنى',
     heroP: 'أماني: جمعُ أمنية.<br>أُنصتُ للفكرةِ المختبئةِ خلفَ كلِّ علامة،<br>وأُلبسها حرفًا ولونًا حتى تُرى.',
     start: 'ادخل المعرض', hint: 'اضغط على أي دائرة، أو مرّر للدخول',
-    facts: [['٣ سنوات', 'خبرة في السوشيال ميديا والهويات'], ['مصر والسعودية', 'اشتغلتُ مع السوقين'], ['١٢ عملًا', 'مختارة في هذا المعرض']],
+    facts: [['٣ سنوات', 'خبرة في السوشيال ميديا والهويات'], ['مصر والخليج', 'اشتغلتُ مع السوقين، المصري والخليجي'], ['١٢ عملًا', 'مختارة في هذا المعرض']],
     read: 'اقرأ الفكرة', caseBeh: 'شاهد على Behance', brBeh: 'البروشور على Behance', postFb: 'التصميم على فيسبوك', allBeh: 'كل أعمالي على Behance',
     close: 'إغلاق', list: 'عرض قائمة', gallery: 'عرض ثلاثي الأبعاد', waShort: 'واتساب',
     wa: 'تواصل معي على واتساب', waProject: 'أريد مشروعًا مثل هذا', waMe: 'أريد مثله', copy: 'نسخ', copied: 'تم النسخ',
@@ -408,7 +413,7 @@ var UI = {
     heroEy: 'AMANY · GRAPHIC DESIGNER', heroH: 'Layer after layer,<br>meaning appears.',
     heroP: 'Amani means wishes.<br>I listen for the idea hidden behind every brand,<br>and dress it in letter and colour until it can be seen.',
     start: 'Enter the gallery', hint: 'Tap any circle, or scroll to enter',
-    facts: [['3 years', 'in social media and brand identity'], ['Egypt & Saudi', 'both markets, hands-on'], ['12 works', 'selected for this gallery']],
+    facts: [['3 years', 'in social media and brand identity'], ['Egypt & the Gulf', 'both the Egyptian and the Gulf markets'], ['12 works', 'selected for this gallery']],
     read: 'Read the idea', caseBeh: 'See it on Behance', brBeh: 'The brochure on Behance', postFb: 'The post on Facebook', allBeh: 'All my work on Behance',
     close: 'Close', list: 'List view', gallery: '3D view', waShort: 'WhatsApp',
     wa: 'Message me on WhatsApp', waProject: 'I want a project like this', waMe: 'I want one like it', copy: 'Copy', copied: 'Copied',
@@ -814,7 +819,27 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* ---------- services + request form (composes a WhatsApp message) ---------- */
+var TOOLS = ['Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Adobe After Effects', 'Adobe Premiere Pro'];
+var SKILLS = {
+  ar: ['هوية بصرية', 'تصميم الشعارات', 'التايبوغرافي العربي', 'تصميم التغليف', 'تصميم السوشيال ميديا', 'الحملات الإعلانية', 'تصميم المطبوعات', 'عرض المنتجات (Mockups)', 'موشن جرافيك', 'مونتاج الفيديو', 'كتابة المحتوى', 'الاستراتيجية البصرية', 'قيادة الفرق'],
+  en: ['Brand identity', 'Logo design', 'Arabic typography', 'Packaging design', 'Social media design', 'Advertising campaigns', 'Print design', 'Product mockups', 'Motion graphics', 'Video editing', 'Copywriting', 'Visual strategy', 'Team leadership']
+};
+function buildSkills() {
+  var box = $('#skills'); if (!box) return; box.innerHTML = '';
+  [[TOOLS, 'tool'], [SKILLS[lang], 'rev']].forEach(function (r) {
+    var row = document.createElement('div'); row.className = 'mq-row ' + r[1];
+    var tr = document.createElement('div'); tr.className = 'mq-track';
+    [0, 1].forEach(function (k) {
+      r[0].forEach(function (t) {
+        var it = document.createElement('span'); it.className = 'mq-item'; it.textContent = t;
+        if (k) it.setAttribute('aria-hidden', 'true'); tr.appendChild(it);
+      });
+    });
+    row.appendChild(tr); box.appendChild(row);
+  });
+}
 function buildSvc() {
+  buildSkills();
   var ul = $('#svc'), sel = $('#fSvc'), keep = sel.selectedIndex;
   ul.innerHTML = ''; sel.innerHTML = '';
   L().svc.forEach(function (s) {
