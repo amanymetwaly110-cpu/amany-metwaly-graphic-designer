@@ -150,6 +150,16 @@ html[dir="ltr"] .intro i::after{transform-origin:left center}
 .d-note .b{white-space:pre-line;margin:0;font-size:18px;line-height:2.1;font-weight:300}
 .sec{display:block;margin:10px 0 0;font-size:13px;letter-spacing:.14em;color:var(--fx-light);font-weight:500}
 .d-cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.d-stats{margin-top:40px;max-width:980px}
+.stat-row{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--fx);border-bottom:1px solid #4A413A;margin-top:12px;overflow:hidden}
+.stat{padding:22px 18px;border-inline-start:1px solid #4A413A;min-width:0}
+.stat:first-child{border-inline-start:0}
+.stat b{display:block;font-size:clamp(30px,4.6vw,50px);font-weight:500;line-height:1.15;font-variant-numeric:tabular-nums;color:var(--paper)}
+.stat b small{font-size:.42em;font-weight:400;color:var(--fx-light);margin-inline-start:8px}
+.stat span.lb{display:block;margin-top:8px;font-size:15px;line-height:1.6;color:var(--fx-light)}
+.stat-row::after{content:"";position:absolute;top:-1px;left:0;height:2px;width:28%;background:var(--paper);animation:sweep 4s linear infinite}
+@keyframes sweep{from{transform:translateX(-100%)}to{transform:translateX(360%)}}
+@media (prefers-reduced-motion:reduce){.stat-row::after{animation:none;width:0}}
 .d-gallery{display:grid;gap:18px;margin-top:44px;grid-template-columns:minmax(0,1fr)}
 .d-gallery.row{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
 .d-gallery figure{margin:0;background:var(--ink2)}
@@ -324,7 +334,7 @@ body:not(.mode-list) .list{display:none}
         <li><span class="n">0150 301 0758</span><button type="button" class="copy" data-copy="01503010758" data-k="copy">نسخ</button></li>
       </ul>
     </div>
-    <figure class="ab-fig"><img src="/img/d_typo.webp" alt="أماني" decoding="async"></figure>
+    <figure class="ab-fig"><img src="img/d_typo.webp" alt="أماني" decoding="async"></figure>
   </div>
 </aside>
 
@@ -340,6 +350,7 @@ body:not(.mode-list) .list{display:none}
     <h2 class="d-title" id="dTitle"></h2>
     <div class="d-note"><span class="rule"></span><p class="k" id="dK"></p><p class="b" id="dBody"></p></div>
     <div class="d-cta" id="dCta"></div>
+    <div class="d-stats" id="dStats" hidden></div>
     <div class="d-gallery" id="dGallery"></div>
   </div>
 </div>
@@ -376,8 +387,8 @@ var UI = {
     heroEy: 'أماني · مصممة جرافيك', heroH: 'طبقة بعد طبقة،<br>يظهر المعنى',
     heroP: 'أماني: جمعُ أمنية.<br>أُنصتُ للفكرةِ المختبئةِ خلفَ كلِّ علامة،<br>وأُلبسها حرفًا ولونًا حتى تُرى.',
     start: 'ادخل المعرض', hint: 'اضغط على أي دائرة، أو مرّر للدخول',
-    facts: [['٣ سنوات', 'خبرة في السوشيال ميديا والهويات'], ['مصر والسعودية', 'اشتغلتُ مع السوقين'], ['٩ أعمال', 'مختارة في هذا المعرض']],
-    read: 'اقرأ الفكرة', caseBeh: 'شاهد على Behance', allBeh: 'كل أعمالي على Behance',
+    facts: [['٣ سنوات', 'خبرة في السوشيال ميديا والهويات'], ['مصر والسعودية', 'اشتغلتُ مع السوقين'], ['١٢ عملًا', 'مختارة في هذا المعرض']],
+    read: 'اقرأ الفكرة', caseBeh: 'شاهد على Behance', brBeh: 'البروشور على Behance', postFb: 'التصميم على فيسبوك', allBeh: 'كل أعمالي على Behance',
     close: 'إغلاق', list: 'عرض قائمة', gallery: 'عرض ثلاثي الأبعاد', waShort: 'واتساب',
     wa: 'تواصل معي على واتساب', waProject: 'أريد مشروعًا مثل هذا', waMe: 'أريد مثله', copy: 'نسخ', copied: 'تم النسخ',
     hashiya: 'الفكرة', endH: 'من أنا', endPoem: 'أقرأُ الفكرةَ أولًا، ثم أُلبسها وجهًا.', talkH: 'تعالَ نتكلم', nav: 'الأقسام', video: 'موشن',
@@ -397,8 +408,8 @@ var UI = {
     heroEy: 'AMANY · GRAPHIC DESIGNER', heroH: 'Layer after layer,<br>meaning appears.',
     heroP: 'Amani means wishes.<br>I listen for the idea hidden behind every brand,<br>and dress it in letter and colour until it can be seen.',
     start: 'Enter the gallery', hint: 'Tap any circle, or scroll to enter',
-    facts: [['3 years', 'in social media and brand identity'], ['Egypt & Saudi', 'both markets, hands-on'], ['9 works', 'selected for this gallery']],
-    read: 'Read the idea', caseBeh: 'See it on Behance', allBeh: 'All my work on Behance',
+    facts: [['3 years', 'in social media and brand identity'], ['Egypt & Saudi', 'both markets, hands-on'], ['12 works', 'selected for this gallery']],
+    read: 'Read the idea', caseBeh: 'See it on Behance', brBeh: 'The brochure on Behance', postFb: 'The post on Facebook', allBeh: 'All my work on Behance',
     close: 'Close', list: 'List view', gallery: '3D view', waShort: 'WhatsApp',
     wa: 'Message me on WhatsApp', waProject: 'I want a project like this', waMe: 'I want one like it', copy: 'Copy', copied: 'Copied',
     hashiya: 'The idea', endH: 'About me', endPoem: 'I read the idea first, then give it a face.', talkH: "Let's talk", nav: 'Sections', video: 'Motion',
@@ -436,14 +447,14 @@ var PROJ = {
       b: 'Decoding the Saudi identity through visual storytelling..\n\nهذا السعودي فوق فوق' }
   },
   taqreer: {
-    room: 2, layout: 'stack', imgs: ['tq_build', 'tq_logo', 'tq_logo_rev', 'tq_colors', 'tq_fonts', 'tq_pattern', 'tq_podium'], video: 'tq_motion.mp4', videoAfter: 3, link: null, cta: true,
+    room: 2, layout: 'stack', imgs: ['tq_build', 'tq_logo', 'tq_logo_rev', 'tq_colors', 'tq_fonts', 'tq_podium'], video: 'tq_motion.mp4', videoAfter: 3, link: null, cta: true,
     ar: { t: 'TAQREER | تقرير', m: 'تصور لهوية بصرية لمنصة إعلامية عربية',
       b: '§ الفكرة\nليس كل شعار يبدأ من خطٍّ جاهز؛ أحيانًا يبدأ من فكرة، ومن محاولة لصناعة شخصية بصرية مختلفة.\n\n§ الحروف\nبنيتُ حروف الشعار بأسلوب الخط الكوفي الهندسي، لما يحمله من ثباتٍ وجدّيةٍ وثقة، وهي صفات تعكس شخصية المنصة.\n\n§ النسختان\nيعمل الشعار على خلفية فاتحة وأخرى داكنة بالوضوح نفسه، ليبقى حاضرًا في كل سياق.\n\n§ الألوان\nلم أرد هوية تقليدية أو رسمية أكثر من اللازم، فاتجهتُ إلى لوحة جريئة تبتعد عن التركيبات المعتادة في المؤسسات الصحفية والإعلامية، وتمنح العلامة حضورًا أكثر تميّزًا.' },
     en: { t: 'TAQREER | تقرير', m: 'A visual identity concept for an Arabic media platform',
       b: '§ The idea\nNot every logo has to start from a ready-made typeface. Sometimes it starts from an idea, and from an attempt to create a different visual personality.\n\n§ The letters\nI built the letters in a geometric Kufic style, for the stability, seriousness and confidence it carries, which are the qualities of the platform.\n\n§ The two versions\nThe logo works on a light and a dark ground with the same clarity, so it stays present in every context.\n\n§ The colours\nI did not want the identity to be traditional or more formal than necessary, so I went with a bold palette that moves away from the usual combinations of press and media institutions, and gives the brand a more distinctive presence.' }
   },
   raydan: {
-    room: 2, layout: 'stack', imgs: ['ry_logo2', 'ry_logo', 'ry_pal', 'ry_hero', 'ry_wall', 'ry_apron', 'ry_set', 'ry_redbox'], link: 'https://www.behance.net/gallery/252859135/RAYDAN-Brand-Identity-Redesign', cta: false,
+    room: 2, layout: 'stack', imgs: ['ry_logo2', 'ry_logo', 'ry_pal', 'ry_hero', 'ry_wall', 'ry_apron', 'ry_mandi', 'ry_redbox'], link: 'https://www.behance.net/gallery/252859135/RAYDAN-Brand-Identity-Redesign', cta: false,
     ar: { t: 'RAYDAN | ريدان', m: 'إعادة تصميم الهوية البصرية لمطعم سعودي',
       b: 'كيف نحافظ على التراث دون أن نفقد روح العصر؟\nوهل للتفاصيل ذاكرة؟\nوللرموز تاريخ؟\n\nتحدٍّ في إعادة تصميم الشعار والهوية البصرية مع الحفاظ على تراث العلامة، من خلال نظام تصميم حديث وقابل للتوسع.' },
     en: { t: 'RAYDAN | ريدان', m: 'Brand identity redesign for a Saudi restaurant',
@@ -471,32 +482,37 @@ var PROJ = {
       b: 'Not just scents, but a visual identity built on mood, contrast and feeling.\n\nThe goal was never just “changing a label”; it was to create a mood for each bottle that expresses the personality of whoever wears it:\n\nSECRET | The calm of night and a depth that cannot be told; a mysterious minimal design with golden touches.\n\nCRIMSON TOUCH | A warmth that leaves its mark; rich shades of red to reflect strength and an alluring oriental spirit.\n\nSUGAR CRAVE | A light sweetness and a feminine touch, closer to a whisper.\n\nFRESH BREEZE | A purity like beginnings; a light design, easy on the eye, expressing freshness without effort.\n\nDifferent moods | One soul' }
   },
   lifemakers: {
-    room: 4, layout: 'stack', imgs: ['lm_vent', 'lm_cover', 'lm_mock'], link: 'https://www.behance.net/gallery/239733495/Tri-fold-Brochure-Design-Print-Layout', cta: false,
+    room: 4, layout: 'stack', imgs: ['lm_vent', 'lm_cover', 'lm_back', 'lm_mock'],
+    stats: { title: { ar: 'الحاجة بالأرقام', en: 'The need in numbers' }, items: [
+      { v: 49, ar: 'سريرًا للأطفال', en: 'beds for children' }, { v: 22, ar: 'محضنًا', en: 'incubators' },
+      { v: 6, ar: 'أجهزة تنفس فقط', en: 'ventilators only' }, { v: 650000, ar: 'جنيه تكلفة الجهاز', en: 'EGP, the cost of the device' }] }, link: 'https://www.behance.net/gallery/239733495/Tri-fold-Brochure-Design-Print-Layout', linkKey: 'brBeh', link2: 'https://www.facebook.com/share/1HgYPBTvep/', link2Key: 'postFb', cta: false,
     ar: { t: 'بروشور ثلاثي الطي', m: 'تصميم مطبوعات | مبادرة تبرّع',
-      b: '§ الطلب\nبروشور ثلاثي الطي لمبادرة تبرّع هدفها توفير جهاز تنفس صناعي حديث لخدمة الأطفال والرضّع داخل الحضّانة، نظرًا للاحتياج الحرج. وصُمّم ليُوزَّع على المحلات والمصانع والشركات، أي على قارئ يمرّ به سريعًا في مكان عمله.\n\n§ السؤال\nكيف نحوّل أرقامًا وإحصائيات معقّدة إلى تنسيق مفهوم، أو عنصر بصري سلس يُفهم بوضوح في أقل وقت ممكن، من النظرة الأولى؟\n\n§ التحدي\nورقة مطوية واحدة عليها أن تحمل قضيّة إنسانية، واحتياجًا ماليًا، وطرق دفع متعدّدة، ثم تدفع قارئها إلى الفعل خلال ثوانٍ. القارئ لا يمنح البروشور وقتًا طويلًا، والتبرّع قرار يحتاج إلى ثقة ووضوح قبل أي شيء.\n\n§ الفكرة\nالغلاف يبدأ بالإنسان لا بالمعلومة: صورة طفل على جهاز التنفس، وعنوان واحد كبير «مبادرة إنقاذ حياة». ثم يتدرّج الطيّ من الإحساس إلى الفهم إلى الفعل: وجه الغلاف، ثم سبب المبادرة، ثم طرق التبرّع.\n\n§ الالتزام بالهوية\nالتصميم ملتزم بالهوية المؤسسية للجهة: ألوانها وشعارها ونبرتها البصرية. الدور هنا كان تنظيم المحتوى داخل هذه الهوية بدقّة، لا الخروج عنها؛ فالأزرق الداكن حاضر كما هو، والأصفر يقود العين إلى نقاط الفعل (الأسهم والمربّعات).\n\n§ كيف سهّلتُ التبرّع؟\nرموز QR واضحة للتواصل عبر واتساب وفيسبوك وزيارة الموقع، وإطارات منقّطة تعزل كل خطوة عن غيرها، مع عنوان المقرّ وقنوات الدفع في شريط واحد أسفل الصفحة.\n\n§ النتيجة\nبروشور يُقرأ بسرعة، ويحوّل التعاطف إلى خطوة عملية بأقل جهد.\n\n§ القضية نفسها، على الشاشة\nلأن القضية واحدة، صغتُ لها تصميمًا للتواصل الاجتماعي بعنوان «المعجزة مش بعيدة… ممكن تبدأ بنفس»، يضع تكلفة الجهاز (٦٥٠٫٠٠٠ جنيه) أمام القارئ بوضوح. انتشر التصميم على فيسبوك وحصد نحو ٩٠٠ إعجاب، وهو أول ما يظهر هنا لأنه واجهة القضية قبل أن يصل القارئ إلى البروشور.' },
+      b: '§ الطلب\nبروشور ثلاثي الطي لمبادرة تبرّع لتوفير جهاز تنفس صناعي حديث لحضّانة الأطفال والرضّع، يُوزَّع على المحلات والمصانع والشركات.\n\n§ السؤال\nكيف نحوّل أرقامًا معقّدة إلى شيء يُفهم من النظرة الأولى، لقارئ يمرّ به سريعًا في مكان عمله؟\n\n§ الفكرة\nنبدأ بالإنسان لا بالمعلومة: طفل على جهاز التنفس وعنوان واحد كبير «مبادرة إنقاذ حياة». ثم يتدرّج الطيّ من الإحساس إلى الفهم إلى الفعل، وتُختم الصفحة برموز QR وقنوات الدفع في شريط واحد.\n\n§ الظهر\nيضع الحاجة في مقارنة واحدة: عدد الأسرّة والمحاضن أمام أجهزة التنفس القليلة، ثم التكلفة الإجمالية بأكبر خط في الصفحة، مع الجهات الداعمة وعبارة تدعو إلى المشاركة.\n\n§ الالتزام بالهوية\nألوان الجهة وشعارها كما هي؛ دوري تنظيم المحتوى داخلها، والأصفر وحده يقود العين إلى نقاط الفعل.\n\n§ النتيجة\nبروشور يُقرأ بسرعة، ويحوّل التعاطف إلى خطوة عملية بأقل جهد.\n\n§ القضية نفسها، على الشاشة\nلأن القضية واحدة، صغتُ لها تصميمًا للتواصل الاجتماعي بعنوان «المعجزة مش بعيدة… ممكن تبدأ بنفس»، يضع تكلفة الجهاز (٦٥٠٫٠٠٠ جنيه) أمام القارئ بوضوح. انتشر على فيسبوك وحصد نحو ١٠٠٠ إعجاب، وهو أول ما يظهر هنا لأنه واجهة القضية قبل أن يصل القارئ إلى البروشور.' },
     en: { t: 'Tri-fold brochure', m: 'Print design | A donation initiative',
-      b: '§ The request\nA tri-fold brochure for a donation initiative aiming to provide a modern ventilator for children and infants in the incubator ward, because of the critical need. It was designed to be handed out to shops, factories and companies, so to a reader passing it quickly in a workplace.\n\n§ The question\nHow do we turn complex figures and statistics into a clear format, or a smooth visual element that is understood at first glance, in the shortest possible time?\n\n§ The challenge\nOne folded sheet has to carry a human cause, a financial need and several payment routes, then move its reader to act within seconds. A reader gives a brochure very little time, and donating is a decision that needs trust and clarity before anything else.\n\n§ The idea\nThe cover starts with the person, not the information: a child on a ventilator, and one large headline, “A Life-Saving Initiative”. Then the folds lead from feeling to understanding to action: the cover, then the reason for the initiative, then the ways to give.\n\n§ Staying true to the identity\nThe design stays faithful to the organisation\'s corporate identity: its colours, logo and visual tone. The job was to organise the content precisely inside that identity, not to step outside it; the deep blue stays as it is, and the yellow leads the eye to the points of action (arrows and squares).\n\n§ How I made giving easier\nClear QR codes to reach out through WhatsApp, Facebook and the website, dotted frames that separate each step, the address, and the payment channels in a single strip at the bottom.\n\n§ The result\nA brochure that reads fast and turns empathy into a practical step with the least effort.\n\n§ The same cause, on screen\nBecause the cause is one, I also designed a social media piece titled “The miracle is not far… it can start with a breath”, which puts the cost of the ventilator (650,000 EGP) clearly in front of the reader. It spread on Facebook and gathered around 900 likes, and it comes first here because it is the face of the cause before the reader reaches the brochure.' }
+      b: '§ The request\nA tri-fold brochure for a donation initiative to provide a modern ventilator for the children and infants incubator ward, handed out to shops, factories and companies.\n\n§ The question\nHow do we turn complex figures into something understood at first glance, for a reader passing it quickly in a workplace?\n\n§ The idea\nStart with the person, not the information: a child on a ventilator and one large headline, “A Life-Saving Initiative”. Then the folds lead from feeling to understanding to action, and the page closes with QR codes and payment channels in a single strip.\n\n§ The back\nIt puts the need in a single comparison: the beds and incubators against the few ventilators, then the total cost in the largest type on the page, with the supporting parties and a line inviting people to take part.\n\n§ Staying true to the identity\nThe organisation\'s colours and logo stay as they are; my job was to organise the content inside them, with yellow alone leading the eye to the points of action.\n\n§ The result\nA brochure that reads fast and turns empathy into a practical step with the least effort.\n\n§ The same cause, on screen\nBecause the cause is one, I also designed a social media piece titled “The miracle is not far… it can start with a breath”, which puts the cost of the ventilator (650,000 EGP) clearly in front of the reader. It spread on Facebook and gathered about 1,000 likes, and it comes first here because it is the face of the cause before the reader reaches the brochure.' }
   },
   khuta: {
     room: 4, layout: 'stack', imgs: ['kh_flat', 'kh_mock'], link: null, cta: true,
     ar: { t: 'جراب فولدر | خُطى', m: 'تصميم مطبوعات | خطة مؤسسية',
-      b: '§ الطلب\nجراب فولدر (Pocket Folder) يحمل أوراق خطة مؤسسية باسم «خُطى»، ويكون أول ما تراه الجهة التي تتسلّمها.\n\n§ الفكرة\nالاسم نفسه حركة، فجعلتُ الشكل يتحرّك: مساحة مائلة في أسفل التصميم توحي بالصعود درجةً بعد درجة، والشعار الأبيض يتوسّط الأزرق العميق بلا زحام، ومعه عبارة الخطة «رؤيتنا واحدة، خطواتنا أقوى».\n\n§ الالتزام بالهوية\nالألوان والشعار من هوية الجهة كما هي؛ عملي كان تنظيمها في قطعة مطبوعة واحدة تُقرأ بوضوح وتُحفظ بسهولة.\n\n§ العرض\nالتصميم المسطّح أولًا كما يُرسل للمطبعة، ثم النموذج المجسّم في النهاية.' },
+      b: '§ الطلب\nجراب فولدر (Pocket Folder) يحمل أوراق خطة مؤسسية باسم «خُطى»، ويكون أول ما تراه الجهة التي تتسلّمها.\n\n§ الشعار أولًا\nصمّمتُ شعار الخطة نفسه ثم بنيتُ عليه الجراب، فجاء الشعار والمطبوع من يدٍ واحدة ولغةٍ بصرية واحدة.\n\n§ الفكرة\nالاسم حركة، فجعلتُ الشكل يتحرّك: مساحة مائلة في أسفل التصميم توحي بالصعود درجةً بعد درجة، والشعار الأبيض يتوسّط الأزرق العميق بلا زحام، ومعه عبارة الخطة «رؤيتنا واحدة، خطواتنا أقوى».\n\n§ العرض\nالتصميم المسطّح أولًا كما يُرسل للمطبعة، ثم النموذج المجسّم في النهاية.' },
     en: { t: 'Pocket folder | Khuta', m: 'Print design | An organisational plan',
-      b: '§ The request\nA pocket folder to carry the papers of an organisational plan called “Khuta” (Steps), and to be the first thing the receiving party sees.\n\n§ The idea\nThe name itself is a movement, so I made the shape move: a slanted area at the bottom suggests climbing step by step, and the white logo sits in the deep blue without crowding, with the plan line “One vision, stronger steps”.\n\n§ Staying true to the identity\nThe colours and logo come from the organisation identity as they are; my job was to arrange them on one printed piece that reads clearly and is easy to keep.\n\n§ The presentation\nThe flat design first, as it goes to the printer, then the 3D mockup at the end.' }
+      b: '§ The request\nA pocket folder to carry the papers of an organisational plan called “Khuta” (Steps), and to be the first thing the receiving party sees.\n\n§ The logo first\nI designed the logo of the plan itself and then built the folder on it, so the logo and the print piece come from one hand and one visual language.\n\n§ The idea\nThe name is a movement, so I made the shape move: a slanted area at the bottom suggests climbing step by step, and the white logo sits in the deep blue without crowding, with the plan line “One vision, stronger steps”.\n\n§ The presentation\nThe flat design first, as it goes to the printer, then the 3D mockup at the end.' }
   },
   ramadan: {
-    room: 1, layout: 'stack', imgs: ['rd_bakkar', 'rd_fanous', 'rd_wasal', 'rd_bunood'], link: null, cta: true,
+    room: 1, layout: 'stack', imgs: ['rd_bunood', 'rd_bakkar', 'rd_fanous', 'rd_wasal', 'rd_shaaban'], link: 'https://www.behance.net/gallery/242591901/Ramadan-Campaign-26-Life-Makers-Foundation', cta: true,
     ar: { t: 'حملة «الناس لبعضها»', m: 'حملة إعلانية رمضانية | سوشيال ميديا',
-      b: '§ الطلب\nحملة رمضانية للتكافل تعرض كراتين غذائية ووجبات إفطار وبنود تبرّع متعدّدة عبر منصات التواصل.\n\n§ السؤال\nفي رمضان تمتلئ الشاشات بإعلانات التبرّع المتشابهة. كيف تبدو هذه الحملة كحكاية يعرفها الناس، لا كإعلان عابر بين عشرات الإعلانات؟\n\n§ الفكرة\nالحنين. استعنتُ بشخصيات من ذاكرة الطفولة، مثل بكّار والفانوس، لتحمل رسالة التبرّع بدفءٍ مألوف، فيشعر القارئ أن الدعوة جاءته من بيته لا من جهة بعيدة.\n\n§ التنفيذ\nالأزرق الليلي يجمع القطع كلّها في هوية واحدة، والسعر (كرتونة، وجبة) يظهر بخط كبير في مكانٍ ثابت ليُقرأ بنظرة، وتبقى الشخصية هي ما يُتذكَّر.' },
+      b: '§ الطلب\nحملة رمضانية للتكافل تعرض كراتين غذائية ووجبات إفطار وبنود تبرّع متعدّدة عبر منصات التواصل.\n\n§ السؤال\nفي رمضان تمتلئ الشاشات بإعلانات التبرّع المتشابهة. كيف تبدو هذه الحملة كحكاية يعرفها الناس، لا كإعلان عابر بين عشرات الإعلانات؟\n\n§ الفكرة\nتنطلق الحملة بتصميم يجمع البنود كلها تحت الهلال والمحراب، ثم تأتي الحكايات. والحنين هو الخيط: استعنتُ بشخصيات من ذاكرة الطفولة، مثل بكّار والفانوس، لتحمل رسالة التبرّع بدفءٍ مألوف، فيشعر القارئ أن الدعوة جاءته من بيته لا من جهة بعيدة.\n\n§ التنفيذ\nالأزرق الليلي يجمع القطع كلّها في هوية واحدة، والسعر (كرتونة، وجبة) يظهر بخط كبير في مكانٍ ثابت ليُقرأ بنظرة، وتبقى الشخصية هي ما يُتذكَّر.' },
     en: { t: 'The “People for Each Other” campaign', m: 'A Ramadan advertising campaign | Social media',
-      b: '§ The request\nA Ramadan solidarity campaign presenting food cartons, iftar meals and several donation options across social platforms.\n\n§ The question\nIn Ramadan the screens fill with similar donation ads. How does this campaign feel like a story people know, not a passing ad among dozens?\n\n§ The idea\nNostalgia. I used characters from childhood memory, such as Bakkar and the fanous lantern, to carry the donation message with a familiar warmth, so the reader feels the invitation came from home, not from a distant organisation.\n\n§ The execution\nA night-blue ties every piece into one identity, the price (carton, meal) sits in large type in a fixed place so it reads at a glance, and the character is what is remembered.' }
+      b: '§ The request\nA Ramadan solidarity campaign presenting food cartons, iftar meals and several donation options across social platforms.\n\n§ The question\nIn Ramadan the screens fill with similar donation ads. How does this campaign feel like a story people know, not a passing ad among dozens?\n\n§ The idea\nThe campaign launches with one design that gathers all the donation items under the crescent and the mihrab, and then the stories follow. Nostalgia is the thread: I used characters from childhood memory, such as Bakkar and the fanous lantern, to carry the donation message with a familiar warmth, so the reader feels the invitation came from home, not from a distant organisation.\n\n§ The execution\nA night-blue ties every piece into one identity, the price (carton, meal) sits in large type in a fixed place so it reads at a glance, and the character is what is remembered.' }
   },
   adahi: {
-    room: 1, layout: 'stack', imgs: ['ad_bunood', 'ad_families', 'ad_meat27', 'ad_scale', 'ad_pot', 'ad_mock'], link: null, cta: true,
+    room: 1, layout: 'stack', imgs: ['ad_launch', 'ad_bunood', 'ad_families', 'ad_meat27', 'ad_scale', 'ad_mock'], link: 'https://www.behance.net/gallery/251173687/El-Adahi-Campaign-2026',
+    stats: { title: { ar: 'الأثر', en: 'The impact' }, items: [
+      { v: 317.9, d: 1, u: { ar: 'ألف', en: 'K' }, ar: 'مشاهدة', en: 'views' }, { v: 93, ar: 'رسالة', en: 'messages' }, { v: 67, ar: 'طلب تطوّع', en: 'volunteer requests' }] }, cta: true,
     ar: { t: 'حملة «الأضاحي»', m: 'حملة إعلانية | قيادة الاستراتيجية الإعلامية والبصرية',
-      b: '§ الطلب\nحملة إنسانية في موسم الأضاحي تدعو إلى التبرّع عبر صكوك ولحوم ووجبات.\n\n§ السؤال\nكيف نعرض عدة خيارات بأسعار مختلفة دون أن يضيع القارئ بينها؟\n\n§ الفكرة\nكل تصميم يقول شيئًا واحدًا فقط. تصميمٌ يرسم الطريق وخياراته: لحوم وصكوك ووجبات. وآخر يضع الحجم أمام العين: أكثر من ٣٠ ألف أسرة تنتظر. وثالث يشرح القيمة: صكٌّ واحد يصير ٢٧ كيلو. ورابع يوازن بين ٤٠٠ جنيه وقطعة لحم على ميزان واحد. وما يربط الجميع: سماء الغروب الدافئة، والمعلومات التي لا تتغيّر مكانها، وشريط طرق الدفع في الأسفل.\n\n§ ما وراء التصميم\n«انتهاء الرحلة الإبداعية لا يعني انتهاء الأثر. ليس كل ما يُبصَر يُدرَك؛ بعض التفاصيل وُجدت لتُشعِر، لا لتُرى. وكل عرض وكل زاوية مدروسان ليصنعا تجربة بصرية هادئة، صامتة، لكنها محمّلة بالمعاني.»\n\n§ الأثر\nمن أرقام هذه الحملة وحدها: نحو ٣١٧٫٩ ألف مشاهدة، و٩٣ رسالة، و٦٧ طلب تطوّع. وأخبرني فريق العمل أن تصاميمها كانت الأعلى تفاعلًا.' },
+      b: '§ الطلب\nحملة إنسانية في موسم الأضاحي تدعو إلى التبرّع عبر صكوك ولحوم ووجبات.\n\n§ السؤال\nكيف نعرض عدة خيارات بأسعار مختلفة دون أن يضيع القارئ بينها؟\n\n§ الفكرة\nتبدأ الحملة بتصميم الانطلاقة: كل الخيارات بأسعارها أمام العين في نظرة واحدة، تحت عنوان «رحلة الخير بتبدأ باختيارك». بعده يقول كل تصميم شيئًا واحدًا فقط: الطريق وخياراته، وحجم الحاجة (أكثر من ٣٠ ألف أسرة)، وقيمة الصك (صكٌّ واحد يصير ٢٧ كيلو)، ثم ميزانٌ بين ٤٠٠ جنيه وقطعة لحم. ويربطها كلها سماء الغروب الدافئة، ومعلومات ثابتة المكان، وشريط طرق الدفع في الأسفل.\n\n§ ما وراء التصميم\n«انتهاء الرحلة الإبداعية لا يعني انتهاء الأثر. ليس كل ما يُبصَر يُدرَك؛ بعض التفاصيل وُجدت لتُشعِر، لا لتُرى. وكل عرض وكل زاوية مدروسان ليصنعا تجربة بصرية هادئة، صامتة، لكنها محمّلة بالمعاني.»\n\nأرقام هذه الحملة وحدها، وقد أخبرني فريق العمل أن تصاميمها كانت الأعلى تفاعلًا.' },
     en: { t: 'The “Adahi” campaign', m: 'Advertising campaign | Media and visual strategy lead',
-      b: '§ The request\nA humanitarian campaign for the Adahi season, inviting donations through shares, meat and meals.\n\n§ The question\nHow do we present several options at different prices without losing the reader among them?\n\n§ The idea\nEach design says only one thing. One draws the road and its options: meat, shares and meals. Another puts the scale before the eye: more than 30,000 families waiting. A third explains the value: one share becomes 27 kilos. A fourth weighs 400 pounds against a piece of meat on a single scale. What binds them all: the warm sunset sky, information that never changes place, and the payment-methods strip at the bottom.\n\n§ Beyond the design\n“The end of the creative journey does not mean the end of its impact. Not everything seen is understood; some details exist to be felt, not to be seen. Every presentation and every angle is considered to create a calm, silent visual experience, yet full of meaning.”\n\n§ The impact\nFrom the figures of this campaign alone: about 317.9K views, 93 messages and 67 volunteer requests. The team told me its designs had the highest engagement.' }
+      b: '§ The request\nA humanitarian campaign for the Adahi season, inviting donations through shares, meat and meals.\n\n§ The question\nHow do we present several options at different prices without losing the reader among them?\n\n§ The idea\nThe campaign opens with the launch design: every option with its price in a single glance, under the title “The journey of giving starts with your choice”. After it, each design says one thing only: the road and its options, the scale of the need (more than 30,000 families), the value of a share (one share becomes 27 kilos), then a scale weighing 400 pounds against a piece of meat. What binds them all: the warm sunset sky, information that never changes place, and the payment strip at the bottom.\n\n§ Beyond the design\n“The end of the creative journey does not mean the end of its impact. Not everything seen is understood; some details exist to be felt, not to be seen. Every presentation and every angle is considered to create a calm, silent visual experience, yet full of meaning.”\n\nThe figures of this campaign alone; the team told me its designs had the highest engagement.' }
   },
   dokangi: {
     room: 5, layout: 'row', imgs: ['dok_dark', 'dok_light'], link: null, cta: true,
@@ -558,7 +574,7 @@ var els = {
   cNum: $('#cNum'), cTot: $('#cTot'), cRoom: $('#cRoom'), cTitle: $('#cTitle'), cMeta: $('#cMeta'), cRead: $('#cRead'), cWa: $('#cWa'), cLink: $('#cLink'), capMain: $('#capMain'),
   prevBtn: $('#prevBtn'), nextBtn: $('#nextBtn'),
   list: $('#list'), detail: $('#detail'), dClose: $('#dClose'), dMeta: $('#dMeta'), dTitle: $('#dTitle'), tip: $('#tip'),
-  dK: $('#dK'), dBody: $('#dBody'), dCta: $('#dCta'), dGallery: $('#dGallery'), about: $('#about'), aClose: $('#aClose'),
+  dK: $('#dK'), dBody: $('#dBody'), dCta: $('#dCta'), dGallery: $('#dGallery'), dStats: $('#dStats'), about: $('#about'), aClose: $('#aClose'),
   listBtn: $('#listBtn'), langBtn: $('#langBtn'), waTop: $('#waTop'), waEnd: $('#waEnd'), startBtn: $('#startBtn'),
   intro: $('#intro'), cur: $('#cur'), curR: $('#curR')
 };
@@ -697,6 +713,7 @@ function openDetail(id) {
   if (pr.link) {
     var a = document.createElement('a'); a.className = 'btn-ink'; a.href = pr.link; a.target = '_blank'; a.rel = 'noopener noreferrer';
     a.textContent = pr.linkKey ? L()[pr.linkKey] : L().caseBeh; els.dCta.appendChild(a);
+    if (pr.link2) { var a2 = document.createElement('a'); a2.className = 'btn-ink'; a2.href = pr.link2; a2.target = '_blank'; a2.rel = 'noopener noreferrer'; a2.textContent = L()[pr.link2Key]; els.dCta.appendChild(a2); }
   }
   var wm = WAMSG[id]; var w = document.createElement('a'); w.className = 'btn-line'; w.href = waLink(wm && wm[lang]); w.target = '_blank'; w.rel = 'noopener noreferrer';
   w.textContent = wm ? L().waProject : L().wa; els.dCta.appendChild(w);
@@ -721,11 +738,49 @@ function openDetail(id) {
     var cap = document.createElement('figcaption'); cap.textContent = L().video;
     vf.appendChild(v); vf.appendChild(cap); els.dGallery.appendChild(vf);
   }
+  buildStats(pr);
   els.tip.hidden = true;
   els.detail.hidden = false; els.detail.scrollTop = 0;
   body.style.overflow = 'hidden';
   if (gl) gl.cover(true);
   els.dClose.focus();
+}
+var statTok = 0;
+function fmtN(v, d) {
+  var s = v.toFixed(d || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  if (lang === 'ar') s = s.replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'.charAt(c); }).replace(/,/g, '٬').replace('.', '٫');
+  return s;
+}
+function buildStats(pr) {
+  var box = els.dStats; box.innerHTML = ''; statTok++;
+  var st = pr.stats;
+  if (!st) { box.hidden = true; return; }
+  box.hidden = false;
+  var h = document.createElement('span'); h.className = 'sec'; h.textContent = st.title[lang]; box.appendChild(h);
+  var row = document.createElement('div'); row.className = 'stat-row'; box.appendChild(row);
+  var nums = [];
+  st.items.forEach(function (it) {
+    var c = document.createElement('div'); c.className = 'stat';
+    var b = document.createElement('b'); var tx = document.createTextNode(''); b.appendChild(tx);
+    var sm = null; if (it.u) { sm = document.createElement('small'); sm.textContent = it.u[lang]; b.appendChild(sm); }
+    var lb = document.createElement('span'); lb.className = 'lb'; lb.textContent = it[lang];
+    c.appendChild(b); c.appendChild(lb); row.appendChild(c);
+    tx.nodeValue = fmtN(REDUCED ? it.v : 0, it.d); nums.push({ tx: tx, v: it.v, d: it.d || 0 });
+  });
+  if (REDUCED || !('IntersectionObserver' in window)) { nums.forEach(function (n) { n.tx.nodeValue = fmtN(n.v, n.d); }); return; }
+  var tok = statTok, started = false;
+  var io = new IntersectionObserver(function (ents) {
+    if (started || !ents[0].isIntersecting) return;
+    started = true; io.disconnect();
+    var t0 = performance.now(), dur = 1800;
+    (function tick(now) {
+      if (tok !== statTok) return;
+      var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      nums.forEach(function (n) { n.tx.nodeValue = fmtN(n.v * e, n.d); });
+      if (k < 1) requestAnimationFrame(tick); else nums.forEach(function (n) { n.tx.nodeValue = fmtN(n.v, n.d); });
+    })(t0);
+  }, { threshold: 0.4 });
+  io.observe(row);
 }
 function closeDetail() {
   if (els.detail.hidden) return;
