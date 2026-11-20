@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E0B0A">
+<meta name="description" content="أماني متولي — مصممة جرافيك: هوية بصرية، تغليف، سوشيال ميديا وحملات إعلانية. معرض أعمال ثلاثي الأبعاد.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="أماني متولي | Amany Metwaly — Graphic Designer">
+<meta property="og:description" content="أماني متولي — مصممة جرافيك: هوية بصرية، تغليف، سوشيال ميديا وحملات إعلانية. معرض أعمال ثلاثي الأبعاد.">
+<meta property="og:image" content="og.jpg">
+<meta property="og:locale" content="ar_EG">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>أماني متولي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Reem+Kufi:wght@400;500;600&display=swap">
+<style>
+/* Ink stage, paper type, one fuchsia thread. Flat colour only: no gradients, no soft shadows.
+   Rule of the layout: the work owns the stage; every word has its own place (side column / caption bar / back of a card). */
+:root{
+  --ink:#0E0B0A; --ink2:#1B1613; --paper:#EFE6D6; --paper2:#E2D6C0;
+  --muted:#BDB3A4; --line:#2F2823; --line2:#4A413A;
+  --fx:#C2187A; --fx-ink:#A8106A; --fx-light:#E85DAE;
+  --gl:max(16px, env(safe-area-inset-left, 0px));
+  --gr:max(16px, env(safe-area-inset-right, 0px));
+  --barH:100px; --hw:min(600px, 44vw);
+  --display:'Reem Kufi', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --poem:'Aref Ruqaa', 'Reem Kufi', serif;
+  --latin:'Cormorant Garamond', 'Times New Roman', serif;
+  --ui:'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+html[lang="en"]{--display:'Cormorant Garamond','Times New Roman',serif;--poem:'Cormorant Garamond','Times New Roman',serif}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--ui);font-size:16px;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
+button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--fx-light);outline-offset:3px}
+body.cur-on, body.cur-on button, body.cur-on a{cursor:none}
+
+#stage{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;touch-action:none;background:var(--ink)}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--ink);color:var(--paper);padding-top:env(safe-area-inset-top, 0px);padding-left:var(--gl);padding-right:var(--gr);border-bottom:1px solid var(--line)}
+.bar-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.brand{display:flex;gap:12px;text-decoration:none;min-height:44px;align-items:center}
+.brand-ar{font-family:var(--display);font-size:32px;font-weight:500;line-height:1}
+.brand-en{font-family:var(--latin);font-size:15px;letter-spacing:.38em;color:var(--muted)}
+.tools{display:flex;align-items:center;gap:8px}
+.tbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border:1px solid var(--line2);background:transparent;font-size:14px;text-decoration:none;white-space:nowrap;transition:border-color .25s,color .25s,background .25s}
+.tbtn:hover{border-color:var(--fx-light)}
+.tbtn-fx{background:var(--fx);border-color:var(--fx);color:var(--paper);font-weight:500}
+.tbtn-fx:hover{background:var(--fx-ink);border-color:var(--fx-ink)}
+.chips{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;min-height:40px;padding:0 16px;background:transparent;border:0;border-bottom:2px solid transparent;font-size:14px;color:var(--muted);transition:color .25s}
+.chip[aria-current="true"]{color:var(--paper);border-bottom-color:var(--fx-light)}
+.chip:hover{color:var(--paper)}
+
+/* welcome column (text lives beside the object, never on it) */
+.hero{position:fixed;z-index:15;top:var(--barH);bottom:0;inset-inline-start:0;width:var(--hw);
+  padding:24px max(36px, env(safe-area-inset-right, 0px)) 24px max(36px, env(safe-area-inset-left, 0px));
+  display:flex;flex-direction:column;justify-content:center;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .7s .1s, visibility .7s .1s}
+.hero > *{pointer-events:auto}
+body[data-view="hero"] .hero{opacity:1;visibility:visible}
+.eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 22px;font-size:14px;letter-spacing:.16em;font-weight:500;color:var(--fx-light)}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--fx-light)}
+.hero h1{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(40px,4.7vw,78px);line-height:1.32;text-wrap:balance}
+.hero p.sub{margin:24px 0 0;font-family:var(--poem);font-size:clamp(20px,1.7vw,26px);line-height:2;color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:0;margin:30px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.facts li{flex:1 1 140px;padding:12px 0 0;font-size:13px;line-height:1.6;color:var(--muted);letter-spacing:.03em}
+.facts b{display:block;font-family:var(--display);font-weight:500;font-size:26px;line-height:1.3;color:var(--paper)}
+.start{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;min-height:54px;padding:0 28px;background:var(--fx);color:var(--paper);border:0;font-size:17px;font-weight:500;transition:background .25s}
+.start:hover{background:var(--fx-ink)}
+.start svg{width:18px;height:18px;transition:transform .3s}
+.start:hover svg{transform:translateX(-4px)}
+html[dir="ltr"] .start:hover svg{transform:translateX(4px)}
+.hint{margin:20px 0 0;font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* caption bar: the work's own place for words */
+.cap{position:fixed;z-index:15;left:0;right:0;bottom:0;background:var(--ink);border-top:1px solid var(--line);
+  padding:0 var(--gr) max(12px, env(safe-area-inset-bottom, 0px)) var(--gl);
+  opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .6s, visibility .6s, transform .6s}
+body[data-view="deck"] .cap{opacity:1;visibility:visible;transform:none}
+.ticks{display:flex;gap:6px}
+.tick{flex:1;min-width:0;height:26px;background:none;border:0;padding:0;position:relative}
+.tick::after{content:"";position:absolute;inset-inline:0;top:12px;height:2px;background:#3A312B;transition:background .3s}
+.tick:hover::after{background:#6A5F55}
+.tick[aria-current="true"]::after{background:var(--fx-light);height:4px;top:11px}
+.cap-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:26px;align-items:center;padding:6px 0 0}
+.cap-num{display:flex;align-items:baseline;gap:8px;direction:ltr}
+.cap-num b{font-family:var(--latin);font-weight:500;font-size:60px;line-height:1;color:var(--fx-light)}
+html[lang="ar"] .cap-num b{font-family:var(--display)}
+.cap-num span{font-size:15px;color:var(--muted);letter-spacing:.1em}
+.cap-main{min-width:0}
+.cap-room{margin:0;font-size:13px;letter-spacing:.14em;font-weight:500;color:var(--fx-light)}
+.cap-title{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(24px,2.5vw,38px);line-height:1.3;overflow-wrap:anywhere}
+.cap-meta{margin:0;font-size:15px;color:var(--muted);font-weight:300}
+.cap-verse{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:6px 0 0;font-family:var(--poem);font-size:clamp(17px,1.5vw,22px);line-height:1.7;color:var(--fx-light)}
+.cap-verse i{display:block;width:6px;height:6px;background:var(--fx-light);transform:rotate(45deg);flex:0 0 auto}
+.cap-in{animation:capIn .6s both}
+@keyframes capIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cap-acts{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn-ink,.btn-line,.btn-fx{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;font-size:15px;font-weight:500;text-decoration:none;border:1px solid var(--paper);transition:background .25s,color .25s,border-color .25s}
+.btn-ink{background:var(--paper);color:var(--ink)}
+.btn-ink:hover{background:var(--fx);border-color:var(--fx);color:var(--paper)}
+.btn-line{background:transparent;color:var(--paper);border-color:#6A5F55}
+.btn-line:hover{border-color:var(--fx-light);color:var(--fx-light)}
+.btn-fx{background:var(--fx);border-color:var(--fx);color:var(--paper)}
+.btn-fx:hover{background:var(--fx-ink);border-color:var(--fx-ink)}
+.arr{width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid #6A5F55;padding:0;transition:border-color .25s,background .25s}
+.arr:hover{border-color:var(--fx-light);background:var(--fx)}
+.arr svg{width:20px;height:20px}
+html[dir="rtl"] .arr svg{transform:scaleX(-1)}
+.arrs{display:flex;gap:6px;margin-inline-start:8px}
+
+.tip{position:fixed;z-index:25;pointer-events:none;background:var(--paper);color:var(--ink);padding:3px 14px;font-size:14px;font-weight:500;white-space:nowrap;border-inline-start:3px solid var(--fx)}
+
+/* cursor + intro */
+.cur,.curR{position:fixed;left:0;top:0;z-index:80;pointer-events:none;display:none;border-radius:50%}
+body.cur-on .cur,body.cur-on .curR{display:block}
+.cur{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:var(--fx-light)}
+.curR{width:44px;height:44px;margin:-22px 0 0 -22px;border:1px solid var(--paper);transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s}
+.curR.hot{width:84px;height:84px;margin:-42px 0 0 -42px;border-color:var(--fx-light);background:rgba(194,24,122,.18)}
+.intro{position:fixed;inset:0;z-index:70;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .9s .1s, visibility .9s .1s}
+.intro.off{opacity:0;visibility:hidden}
+.intro b{font-family:var(--display);font-weight:500;font-size:clamp(64px,14vw,150px);line-height:1;letter-spacing:0;animation:inB 1.4s both}
+.intro i{display:block;width:min(240px,50vw);height:2px;background:var(--line);position:relative;overflow:hidden}
+.intro i::after{content:"";position:absolute;inset:0;background:var(--fx-light);transform-origin:right center;animation:inL 1.7s cubic-bezier(.6,0,.2,1) both}
+html[dir="ltr"] .intro i::after{transform-origin:left center}
+@keyframes inB{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes inL{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* project detail */
+.detail{position:fixed;inset:0;z-index:40;background:var(--ink);color:var(--paper);overflow-y:auto;overscroll-behavior:contain}
+.detail:not([hidden]){animation:dIn .7s .25s both}
+@keyframes dIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.d-inner{max-width:1120px;margin:0 auto;padding:76px var(--gr) 80px var(--gl)}
+.d-close{position:fixed;top:max(14px, env(safe-area-inset-top, 0px));inset-inline-end:var(--gr);width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--paper);color:var(--ink);border:0;z-index:2}
+.d-close:hover{background:var(--fx);color:var(--paper)}
+.d-close svg{width:20px;height:20px}
+.d-meta{margin:0;font-size:14px;letter-spacing:.1em;color:var(--fx-light);font-weight:500}
+.d-title{margin:6px 0 0;font-family:var(--display);font-weight:500;font-size:clamp(36px,6.4vw,76px);line-height:1.3}
+.d-note{display:grid;grid-template-columns:auto 1fr;gap:0 16px;margin-top:26px;max-width:720px}
+.d-note .rule{width:3px;background:var(--fx);grid-row:1 / span 2}
+.d-note .k{margin:0;font-size:13px;letter-spacing:.14em;color:var(--fx-light);font-weight:500}
+.d-note .b{white-space:pre-line;margin:0;font-size:18px;line-height:2.1;font-weight:300}
+.sec{display:block;margin:10px 0 0;font-size:13px;letter-spacing:.14em;color:var(--fx-light);font-weight:500}
+.d-cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.d-gallery{display:grid;gap:18px;margin-top:44px;grid-template-columns:minmax(0,1fr)}
+.d-gallery.row{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.d-gallery figure{margin:0;background:var(--ink2)}
+.d-gallery img,.d-gallery video{display:block;width:100%;height:auto;max-width:100%}
+.d-gallery figcaption{white-space:pre-line;padding:12px 4px 4px;font-size:16px;line-height:1.9;color:var(--paper)}
+
+/* about */
+.about{position:fixed;inset:0;z-index:45;background:var(--ink);color:var(--paper);overflow-y:auto;overscroll-behavior:contain;display:none}
+.about.open{display:block;animation:dIn .7s .1s both}
+.ab-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.8fr);gap:64px;max-width:1180px;margin:0 auto;padding:92px var(--gr) 72px var(--gl);align-items:start}
+.ab-fig{margin:0;position:sticky;top:92px}
+.ab-fig img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:var(--ink2)}
+.about h2{margin:0 0 8px;font-family:var(--display);font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1.2}
+.about h3{margin:34px 0 6px;font-family:var(--display);font-weight:500;font-size:28px}
+.about p{margin:0 0 14px;font-size:17px;line-height:2.05;font-weight:300}
+.about .poem{font-family:var(--poem);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.9;color:var(--fx-light);margin-bottom:22px}
+.skills{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;padding:0;list-style:none}
+.skills li{padding:3px 14px;border:1px solid var(--line2);font-size:13px;color:var(--muted)}
+.role{margin:16px 0 0;font-size:15px;letter-spacing:.08em;color:var(--paper);font-weight:500}
+.svc{display:grid;gap:0;margin:8px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.svc li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.svc b{font-family:var(--display);font-weight:500;font-size:20px}
+.svc span{font-size:13px;color:var(--fx-light);letter-spacing:.08em;direction:ltr;text-align:end}
+.req{display:grid;gap:12px;margin:8px 0 18px;max-width:560px}
+.req label{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.req input,.req select,.req textarea{width:100%;min-height:46px;padding:10px 14px;background:var(--ink2);color:var(--paper);border:1px solid var(--line2);font:inherit;font-size:16px;border-radius:0}
+.req textarea{resize:vertical;min-height:96px}
+.req input:focus,.req select:focus,.req textarea:focus{outline:2px solid var(--fx-light);outline-offset:1px;border-color:var(--fx-light)}
+.req button{justify-self:start}
+.about .links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
+.nums{display:grid;gap:8px;margin:0;padding:0;list-style:none;max-width:460px}
+.nums li{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:8px}
+.nums .n{font-size:18px;font-weight:500;letter-spacing:.06em;direction:ltr;unicode-bidi:plaintext;user-select:all}
+.copy{min-height:44px;padding:0 14px;background:transparent;border:1px solid #6A5F55;font-size:14px}
+.copy:hover{border-color:var(--fx-light);color:var(--fx-light)}
+.about .d-close{position:fixed}
+
+.list{position:relative;z-index:12;background:var(--ink);padding:20px var(--gr) 40px var(--gl)}
+.list h2{margin:56px 0 18px;font-family:var(--display);font-size:34px;font-weight:500}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr))}
+.card{display:flex;flex-direction:column;text-align:start;background:var(--ink2);border:1px solid var(--line);padding:0;min-width:0}
+.card:hover{border-color:var(--fx-light)}
+.card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#2A2420}
+.card .ct{padding:12px 14px 16px}
+.card .ct b{display:block;font-family:var(--display);font-weight:500;font-size:22px;line-height:1.4}
+.card .ct span{font-size:14px;color:var(--muted)}
+
+/* list mode: the same content as a plain page */
+body.mode-list{display:flex;flex-direction:column}
+.mode-list #stage,.mode-list .cap,.mode-list .hint,.mode-list .tip,.mode-list .start,.mode-list .cur,.mode-list .curR,.mode-list .intro{display:none}
+.mode-list .hero{position:relative;top:auto;bottom:auto;inset-inline-start:auto;width:auto;opacity:1;visibility:visible;order:0;padding-top:140px;max-width:820px;pointer-events:auto}
+.mode-list .list{order:1}
+.mode-list .about{display:block;position:static;overflow:visible;order:2;animation:none}
+.mode-list .about .d-close,.mode-list .ab-fig{display:none}
+.mode-list .ab-grid{grid-template-columns:minmax(0,1fr);max-width:820px;margin:0;padding-top:40px}
+body:not(.mode-list) .list{display:none}
+
+@media (max-width:760px){
+  :root{--hw:100vw}
+  .brand-ar{font-size:27px}
+  .brand-en{display:none}
+  .tbtn{padding:0 11px;font-size:13px}
+  .hero{top:auto;bottom:0;left:0;right:0;inset-inline-start:0;width:100%;background:var(--ink);border-top:1px solid var(--line);
+    padding:18px max(20px, env(safe-area-inset-right, 0px)) max(18px, env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));justify-content:flex-start}
+  .eyebrow{margin-bottom:10px;font-size:12px}
+  .hero h1{font-size:30px;line-height:1.35}
+  .hero p.sub,.hint{display:none}
+  .facts{margin-top:14px}
+  .facts li{flex:1 1 30%;font-size:11px}
+  .facts b{font-size:19px}
+  .start{margin-top:16px;min-height:50px}
+  .cap-row{grid-template-columns:auto minmax(0,1fr);gap:14px;padding-top:4px}
+  .cap-num b{font-size:40px}
+  .cap-num span{display:none}
+  .cap-title{font-size:23px}
+  .cap-acts{grid-column:1 / -1;justify-content:stretch;flex-wrap:nowrap}
+  .cap-acts .btn-ink,.cap-acts .btn-line{flex:1 1 0;padding:0 10px;font-size:14px;min-width:0}
+  .cap-acts #cLink{display:none}
+  .arrs{margin-inline-start:0}
+  .ab-grid{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:84px}
+  .ab-fig{position:static;order:-1}
+  .ab-fig img{max-height:44vh}
+  .mode-list .hero{padding-top:128px;height:auto;border:0;background:transparent}
+}
+@media (prefers-reduced-motion:reduce){ .hero,.cap,.intro{transition:none} .cap-in,.detail:not([hidden]),.about.open,.intro b,.intro i::after{animation:none} }
+</style>
+</head>
+<body>
+
+<div id="top"></div>
+<canvas id="stage" role="img" aria-label="معرض ثلاثي الأبعاد لأعمال أماني"></canvas>
+
+<header class="bar" id="bar">
+  <div class="bar-row">
+    <a class="brand" href="#top" id="brand" aria-label="أماني">
+      <span class="brand-ar">أماني</span><span class="brand-en">AMANY</span>
+    </a>
+    <div class="tools">
+      <button type="button" class="tbtn" id="listBtn">عرض قائمة</button>
+      <button type="button" class="tbtn" id="langBtn" aria-label="English">EN</button>
+      <a class="tbtn tbtn-fx" id="waTop" href="#" target="_blank" rel="noopener noreferrer" data-k="waShort">واتساب</a>
+    </div>
+  </div>
+  <nav class="chips" id="chips" aria-label="الأقسام"></nav>
+</header>
+
+<section class="hero" id="hero" aria-labelledby="heroH">
+  <p class="eyebrow" data-k="heroEy">أماني · مصممة جرافيك</p>
+  <h1 id="heroH" data-kh="heroH">طبقة بعد طبقة،<br>يظهر المعنى</h1>
+  <p class="role" data-k="heroRole">مصممة جرافيك · هوية بصرية · تغليف · سوشيال ميديا وحملات</p>
+  <p class="sub" data-kh="heroP">أماني: جمعُ أمنية.<br>أُنصتُ للفكرةِ المختبئةِ خلفَ كلِّ علامة،<br>وأُلبسها حرفًا ولونًا حتى تُرى.</p>
+  <ul class="facts" id="facts"></ul>
+  <button type="button" class="start" id="startBtn">
+    <span data-k="start">ادخل المعرض</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>
+  </button>
+  <p class="hint" data-k="hint">اضغط على أي دائرة، أو مرّر للدخول</p>
+</section>
+
+<section class="cap" id="cap" aria-live="polite">
+  <div class="ticks" id="ticks"></div>
+  <div class="cap-row">
+    <div class="cap-num" aria-hidden="true"><b id="cNum">٠١</b><span id="cTot">/ ١٠</span></div>
+    <div class="cap-main" id="capMain">
+      <p class="cap-room" id="cRoom"></p>
+      <h2 class="cap-title" id="cTitle"></h2>
+      <p class="cap-meta" id="cMeta"></p>
+      <p class="cap-verse" id="cVerse"><span id="cV1"></span><i aria-hidden="true"></i><span id="cV2"></span></p>
+    </div>
+    <div class="cap-acts">
+      <button type="button" class="btn-ink" id="cRead"></button>
+      <a class="btn-line" id="cWa" target="_blank" rel="noopener noreferrer" hidden></a>
+      <a class="btn-line" id="cLink" target="_blank" rel="noopener noreferrer" hidden></a>
+      <div class="arrs">
+        <button type="button" class="arr" id="prevBtn" aria-label="السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="arr" id="nextBtn" aria-label="التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside class="about" id="about" role="dialog" aria-modal="true" aria-labelledby="endH">
+  <button type="button" class="d-close" id="aClose" aria-label="إغلاق">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <div class="ab-grid">
+    <div>
+      <h2 id="endH" data-k="endH">من أنا</h2>
+      <p class="poem" data-k="endPoem">أقرأُ الفكرةَ أولًا، ثم أُلبسها وجهًا.</p>
+      <p data-k="bio1"></p>
+      <p data-k="bio2"></p>
+      <p data-k="bio3"></p>
+      <h3 data-k="svcH">ما أقدّمه</h3>
+      <ul class="svc" id="svc"></ul>
+      <h3 data-k="toolsH">الأدوات والمهارات</h3>
+      <ul class="skills" aria-label="Skills">
+        <li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Video Editing</li><li>Copywriting</li>
+      </ul>
+      <h3 data-k="talkH">تعالَ نتكلم</h3>
+      <form class="req" id="req">
+        <label><span data-k="fName">الاسم</span><input id="fName" autocomplete="name"></label>
+        <label><span data-k="fSvc">الخدمة المطلوبة</span><select id="fSvc"></select></label>
+        <label><span data-k="fMsg">احكِ لي باختصار عن مشروعك</span><textarea id="fMsg" rows="3"></textarea></label>
+        <button type="submit" class="btn-fx" data-k="fSend">أرسل على واتساب</button>
+      </form>
+      <div class="links">
+        <a class="btn-fx" id="waEnd" href="#" target="_blank" rel="noopener noreferrer" data-k="wa">تواصل معي على واتساب</a>
+        <a class="btn-line" href="https://www.behance.net/amanymetwaly" target="_blank" rel="noopener noreferrer">Behance</a>
+        <a class="btn-line" href="https://www.linkedin.com/in/amany-metwaly-a4001a325" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <ul class="nums">
+        <li><span class="n">0150 301 0758</span><button type="button" class="copy" data-copy="01503010758" data-k="copy">نسخ</button></li>
+      </ul>
+    </div>
+    <figure class="ab-fig"><img src="img/d_typo.webp" alt="أماني" decoding="async"></figure>
+  </div>
+</aside>
+
+<div class="tip" id="tip" hidden></div>
+<main class="list" id="list" hidden></main>
+
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden>
+  <button type="button" class="d-close" id="dClose" aria-label="إغلاق">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <div class="d-inner">
+    <p class="d-meta" id="dMeta"></p>
+    <h2 class="d-title" id="dTitle"></h2>
+    <div class="d-note"><span class="rule"></span><p class="k" id="dK"></p><p class="b" id="dBody"></p></div>
+    <div class="d-cta" id="dCta"></div>
+    <div class="d-gallery" id="dGallery"></div>
+  </div>
+</div>
+
+<div class="intro" id="intro" aria-hidden="true"><b>أماني</b><i></i></div>
+<div class="cur" id="cur"></div><div class="curR" id="curR"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+'use strict';
+
+var WA_NUMBER = '201503010758';
+var BEHANCE = 'https://www.behance.net/amanymetwaly';
+
+var ROOMS = [
+  { ar: 'أماني', en: 'Amany',
+    pa: ['اسمي جمعُ أمنيةٍ تُخبَّأ', 'ومعناهُ طبقاتٌ تنكشفُ بالصبر'], pe: ['My name is a wish kept hidden', 'its meaning, layers that open with patience'] },
+  { ar: 'سوشيال ميديا', en: 'Social media',
+    pa: ['في كلِّ منشورٍ نبضٌ يمرُّ سريعًا', 'وفكرةٌ تُقيمُ في العينِ طويلًا'], pe: ['In every post a pulse passes quickly', 'and one idea stays in the eye'] },
+  { ar: 'هوية بصرية', en: 'Brand identity',
+    pa: ['الحرفُ بذرةُ الهوية', 'واللونُ ماؤها والمعنى ثمرُها'], pe: ['The letter is the seed of an identity', 'colour is its water, meaning its fruit'] },
+  { ar: 'تغليف', en: 'Packaging',
+    pa: ['علبةٌ تحرسُ وعدَ المنتج', 'وتهمسُ للعينِ قبلَ اليد'], pe: ['A box that guards the promise of a product', 'and whispers to the eye before the hand'] },
+  { ar: 'مطبوعات', en: 'Print',
+    pa: ['حبرٌ على ورقٍ يحملُ رسالة', 'تُقرأُ باليدِ قبلَ العين'], pe: ['Ink on paper carrying a message', 'read by the hand before the eye'] },
+  { ar: 'شعارات أخرى', en: 'Other logos',
+    pa: ['شعارٌ صغيرٌ في مساحةِ كفٍّ', 'وفيهِ حكايةُ علامةٍ كاملة'], pe: ['A small logo in the span of a palm', 'holding the story of a whole brand'] },
+  { ar: 'من أنا', en: 'About me' }
+];
+
+var UI = {
+  ar: {
+    heroEy: 'أماني · مصممة جرافيك', heroH: 'طبقة بعد طبقة،<br>يظهر المعنى',
+    heroP: 'أماني: جمعُ أمنية.<br>أُنصتُ للفكرةِ المختبئةِ خلفَ كلِّ علامة،<br>وأُلبسها حرفًا ولونًا حتى تُرى.',
+    start: 'ادخل المعرض', hint: 'اضغط على أي دائرة، أو مرّر للدخول',
+    facts: [['٣ سنوات', 'خبرة في السوشيال ميديا والهويات'], ['مصر والسعودية', 'اشتغلتُ مع السوقين'], ['٩ أعمال', 'مختارة في هذا المعرض']],
+    read: 'اقرأ الفكرة', caseBeh: 'شاهد على Behance', allBeh: 'كل أعمالي على Behance',
+    close: 'إغلاق', list: 'عرض قائمة', gallery: 'عرض ثلاثي الأبعاد', waShort: 'واتساب',
+    wa: 'تواصل معي على واتساب', waProject: 'أريد مشروعًا مثل هذا', waMe: 'أريد مثله', copy: 'نسخ', copied: 'تم النسخ',
+    hashiya: 'الفكرة', endH: 'من أنا', endPoem: 'أقرأُ الفكرةَ أولًا، ثم أُلبسها وجهًا.', talkH: 'تعالَ نتكلم', nav: 'الأقسام', video: 'موشن',
+    open: 'افتح المشروع', prev: 'السابق', next: 'التالي', aboutNext: 'من أنا',
+    waMsg: 'مرحبًا أماني، شاهدت معرض أعمالك وأريد التواصل بخصوص مشروع.',
+    bio1: 'أنا أماني متولي، مصممة جرافيك بخبرة ٣ سنوات في السوشيال ميديا والهويات البصرية، اشتغلت مع السوقين المصري والسعودي. خلفيتي إعلامية صحفية، فأبدأ كل تصميم بالبحث.',
+    bio2: 'آخذ الـBrief وأحوّله إلى محتوى بصري يشبه العلامة ويخاطب جمهورها. وأتولى المشروع من الخطة حتى التنفيذ، وقدت حملات إعلانية كاملة بتصميماتها، مع الاهتمام بالتفاصيل والالتزام بمواعيد التسليم.',
+    bio3: 'بدأتُ رحلتي بنفسي، ومعي حبٌّ وشغفٌ بالفنِّ بكلِّ أنواعه؛ ووَلَعٌ بجمالِ الكلمةِ وما تحملُه من معنى، فأنقلُ ذلك إلى التصميم لأُرسلَ به معنىً عميقًا. بالفضول والبحث والتجربة، جعلتُ من كل مورد متاح طريقًا. وما زلت أمشي فيها وأتعلم كل أداة جديدة بسرعة، لأن من يطلب المعنى لا يتوقف.',
+    heroRole: 'مصممة جرافيك · هوية بصرية · تغليف · سوشيال ميديا وحملات', svcH: 'ما أقدّمه',
+    toolsH: 'الأدوات والمهارات',
+    svc: [['الهوية البصرية والشعارات', 'Brand Identity & Logos'], ['العبوات والتغليف', 'Packaging Design'], ['السوشيال ميديا والحملات الإعلانية', 'Social Media & Ad Campaigns'], ['المطبوعات', 'Print Design'], ['التوجيه الفني', 'Art Direction']],
+    fName: 'الاسم', fSvc: 'الخدمة المطلوبة', fMsg: 'احكِ لي باختصار عن مشروعك', fSend: 'أرسل على واتساب',
+    waForm: function (n, s, m) { return 'مرحبًا أماني، أنا ' + (n || '') + '. أريد خدمة: ' + s + '.' + (m ? '\n' + m : ''); },
+    langLabel: 'English', langBtn: 'EN', canvasLabel: 'معرض ثلاثي الأبعاد لأعمال أماني'
+  },
+  en: {
+    heroEy: 'AMANY · GRAPHIC DESIGNER', heroH: 'Layer after layer,<br>meaning appears.',
+    heroP: 'Amani means wishes.<br>I listen for the idea hidden behind every brand,<br>and dress it in letter and colour until it can be seen.',
+    start: 'Enter the gallery', hint: 'Tap any circle, or scroll to enter',
+    facts: [['3 years', 'in social media and brand identity'], ['Egypt & Saudi', 'both markets, hands-on'], ['9 works', 'selected for this gallery']],
+    read: 'Read the idea', caseBeh: 'See it on Behance', allBeh: 'All my work on Behance',
+    close: 'Close', list: 'List view', gallery: '3D view', waShort: 'WhatsApp',
+    wa: 'Message me on WhatsApp', waProject: 'I want a project like this', waMe: 'I want one like it', copy: 'Copy', copied: 'Copied',
+    hashiya: 'The idea', endH: 'About me', endPoem: 'I read the idea first, then give it a face.', talkH: "Let's talk", nav: 'Sections', video: 'Motion',
+    open: 'Open project', prev: 'Previous', next: 'Next', aboutNext: 'About me',
+    waMsg: 'Hello Amany, I saw your portfolio and would like to talk about a project.',
+    bio1: "I'm Amany Metwaly, a graphic designer with 3 years of experience in social media and brand identity, working with the Egyptian and Saudi markets. My background is in media and journalism, so I start every design with research.",
+    bio2: 'I take the brief and turn it into visual content that looks like the brand and speaks to its audience. I take a project from the plan all the way to execution, and I have led full advertising campaigns with their designs, with care for detail and for delivery deadlines.',
+    bio3: 'I began my journey on my own, carrying a love and passion for art in all its forms: and a love for the beauty of words and the meaning they carry, which I bring into design to send a deep message. With curiosity, research and trial, I turned every available resource into a path. I am still walking it, learning every new tool quickly, because whoever seeks meaning does not stop.',
+    heroRole: 'Graphic designer · Brand identity · Packaging · Social media & campaigns', svcH: 'What I offer',
+    toolsH: 'Tools & skills',
+    svc: [['Brand identity & logos', 'Brand Identity & Logos'], ['Packaging', 'Packaging Design'], ['Social media & ad campaigns', 'Social Media & Ad Campaigns'], ['Print', 'Print Design'], ['Art direction', 'Art Direction']],
+    fName: 'Name', fSvc: 'Service needed', fMsg: 'Tell me briefly about your project', fSend: 'Send on WhatsApp',
+    waForm: function (n, s, m) { return 'Hello Amany, I am ' + (n || '') + '. I would like: ' + s + '.' + (m ? '\n' + m : ''); },
+    langLabel: 'العربية', langBtn: 'ع', canvasLabel: "3D gallery of Amany's work"
+  }
+};
+
+var CAP = [
+  '«عزّنا بجودنا» | Giving & Modernity\nتنوع خيارات مبتكرة أمام أفق الرياض؛ تعبيراً عن الجود وتعدد الأذواق في مسيرة نهضة متجددة.',
+  '«عزّنا بكرمنا» | Authentic Hospitality\nبوكس المشاركة بدفء بيوت الطين في الدرعية؛ تجسيداً لحفاوة اللمة وفتح البيوت كـقيمة أصيلة.',
+  '«عزّنا بأصالتنا» | Rooted in Diriyah\nخروج المنتج من قلب الباب النجدي؛ لترسيخ أن قوة العلامة تنبع من الحمض النووي لهوية وطنية راسخة.'
+];
+
+var PROJ = {
+  typo: {
+    room: 0, layout: 'stack', imgs: ['typo'], link: null, cta: false,
+    ar: { t: 'أماني', m: 'تايبوغرافي بالخط العربي', b: '' },
+    en: { t: 'Amany', m: 'Arabic calligraphic typography', b: '' }
+  },
+  saudi: {
+    room: 1, layout: 'row', imgs: ['sa1', 'sa2', 'sa3'], caps: CAP, link: null, cta: true,
+    ar: { t: 'BS Burger | اليوم الوطني السعودي ٩٦', m: '١٩٣٢م — ٢٠٢٦م | ٢٣ سبتمبر',
+      b: 'Decoding the Saudi identity through visual storytelling..\n\nهذا السعودي فوق فوق' },
+    en: { t: 'BS Burger | Saudi National Day 96', m: '1932 — 2026 | 23 September',
+      b: 'Decoding the Saudi identity through visual storytelling..\n\nهذا السعودي فوق فوق' }
+  },
+  taqreer: {
+    room: 2, layout: 'stack', imgs: ['tq_build', 'tq_logo', 'tq_logo_rev', 'tq_colors', 'tq_fonts', 'tq_pattern', 'tq_podium'], video: 'tq_motion.mp4', videoAfter: 3, link: null, cta: true,
+    ar: { t: 'TAQREER | تقرير', m: 'تصور لهوية بصرية لمنصة إعلامية عربية',
+      b: '§ الفكرة\nليس كل شعار يبدأ من خطٍّ جاهز؛ أحيانًا يبدأ من فكرة، ومن محاولة لصناعة شخصية بصرية مختلفة.\n\n§ الحروف\nبنيتُ حروف الشعار بأسلوب الخط الكوفي الهندسي، لما يحمله من ثباتٍ وجدّيةٍ وثقة، وهي صفات تعكس شخصية المنصة.\n\n§ النسختان\nيعمل الشعار على خلفية فاتحة وأخرى داكنة بالوضوح نفسه، ليبقى حاضرًا في كل سياق.\n\n§ الألوان\nلم أرد هوية تقليدية أو رسمية أكثر من اللازم، فاتجهتُ إلى لوحة جريئة تبتعد عن التركيبات المعتادة في المؤسسات الصحفية والإعلامية، وتمنح العلامة حضورًا أكثر تميّزًا.' },
+    en: { t: 'TAQREER | تقرير', m: 'A visual identity concept for an Arabic media platform',
+      b: '§ The idea\nNot every logo has to start from a ready-made typeface. Sometimes it starts from an idea, and from an attempt to create a different visual personality.\n\n§ The letters\nI built the letters in a geometric Kufic style, for the stability, seriousness and confidence it carries, which are the qualities of the platform.\n\n§ The two versions\nThe logo works on a light and a dark ground with the same clarity, so it stays present in every context.\n\n§ The colours\nI did not want the identity to be traditional or more formal than necessary, so I went with a bold palette that moves away from the usual combinations of press and media institutions, and gives the brand a more distinctive presence.' }
+  },
+  raydan: {
+    room: 2, layout: 'stack', imgs: ['ry_logo2', 'ry_logo', 'ry_pal', 'ry_hero', 'ry_wall', 'ry_apron', 'ry_set', 'ry_redbox'], link: 'https://www.behance.net/gallery/252859135/RAYDAN-Brand-Identity-Redesign', cta: false,
+    ar: { t: 'RAYDAN | ريدان', m: 'إعادة تصميم الهوية البصرية لمطعم سعودي',
+      b: 'كيف نحافظ على التراث دون أن نفقد روح العصر؟\nوهل للتفاصيل ذاكرة؟\nوللرموز تاريخ؟\n\nتحدٍّ في إعادة تصميم الشعار والهوية البصرية مع الحفاظ على تراث العلامة، من خلال نظام تصميم حديث وقابل للتوسع.' },
+    en: { t: 'RAYDAN | ريدان', m: 'Brand identity redesign for a Saudi restaurant',
+      b: 'How do we preserve heritage without losing the spirit of the age?\nDo details have a memory?\nDo symbols have a history?\n\nA branding challenge focused on redesigning the logo and visual identity while preserving the brand heritage through a modern, scalable design system.' }
+  },
+  lindo: {
+    room: 3, layout: 'stack', imgs: ['ln_purple', 'ln_green'], link: null, cta: true,
+    ar: { t: 'ليندو', m: 'من الآرتبورد للعرض الفعلي للمنتج',
+      b: '§ الفكرة\nالفكرة من البداية كانت الخروج بره النمط الشعبي التقليدي ورسمة الورد المستهلكة في معظم علب المناديل وزخرفة الألوان. الهدف كان هوية هادية وClean تدل على النظافة والراحة.\n\n§ البنفسجي\nاللون البنفسجي بتدرجاته عشان يعكس النعومة والرقة اللي بندور عليها في المناديل.\n\n§ الأخضر\nاللون الأخضر وعناصر أوراق النخيل عشان يدي طابع طبيعي ومناسب للأجواء والهوية السعودية.\n\n§ الدقة\nلأن التغليف الصح مش مجرد شكل؛ بل هو دقة تفاصيل بالمللي على الآرتبورد قبل ما يخرج منتج حقيقي في إيد العميل.' },
+    en: { t: 'Lindo', m: 'From the artboard to the real product',
+      b: '§ The idea\nFrom the start, the idea was to step away from the traditional folk style and the overused flower drawing on most tissue boxes. The goal was a calm, clean identity that signals cleanliness and comfort.\n\n§ Purple\nPurple in its shades, to reflect the softness we look for in tissues.\n\n§ Green\nGreen with palm-leaf elements, for a natural character that suits the Saudi atmosphere and identity.\n\n§ Precision\nBecause good packaging is not just a look; it is millimetre-precise detail on the artboard before a real product reaches the client\'s hands.' }
+  },
+  wadi: {
+    room: 3, layout: 'row', imgs: ['wd_sheep', 'wd_poultry', 'wd_g3', 'wd_sheepflat', 'wd_cattle', 'wd_pigeon'], link: BEHANCE, linkKey: 'allBeh', cta: false,
+    ar: { t: 'أعلاف الوادي', m: 'تصميم عبوات تجارية',
+      b: '§ الطلب\nمصنع أعلاف أراد عبوات تجارية واضحة بلا زخرفة، تؤدّي غرضها من أول نظرة.\n\n§ التحدي\nالمشتري في هذا السوق لا يبحث عن جمال العبوة، بل عن ثلاثة أشياء: نوع العلف، نسبة البروتين، الوزن. وهو يراها في المخزن ومن مسافة، فلا مجال للالتباس.\n\n§ الحل\nالوضوح قبل الجمال: اسم العلامة ونوع العلف بخط كبير، وصورة الحيوان للتعريف الفوري، ونسبة البروتين في شارة بارزة، وتمييز لوني بين خطوط الإنتاج المختلفة (أغنام، دواجن، مواشي، حمام).\n\n§ القرار\nالطلب كان عبوات تجارية بلا زخرفة، لكن القرار داخل هذا الإطار كان قراري: أيّ معلومة تأتي أولًا، وكم من المساحة تستحقّ، وكيف نفرّق خطّ الإنتاج عن غيره من بعيد دون أن يضيع المشتري. لذلك صارت العبوة نظامًا بصريًا واحدًا بألوان متعدّدة، لا مجرّد ملصقات منفصلة.\n\n§ النتيجة\nعبوات تُقرأ من مسافة، وتتّسع لخطوط إنتاج جديدة دون إعادة تصميم. في التصميم التجاري، الوضوح هو الجمال الذي يُباع.' },
+    en: { t: 'Al Wadi Feed', m: 'Commercial packaging design',
+      b: '§ The request\nA feed mill wanted clear commercial packaging with no decoration, doing its job at first glance.\n\n§ The challenge\nThe buyer in this market is not looking for a beautiful bag, but for three things: the type of feed, the protein percentage and the weight. They see it in the warehouse and from a distance, so there is no room for confusion.\n\n§ The solution\nClarity before beauty: the brand name and feed type in large type, an animal picture for instant recognition, the protein percentage in a prominent badge, and colour coding between the different product lines (sheep, poultry, cattle, pigeons).\n\n§ The decision\nThe brief was commercial packaging without decoration, but the decisions inside that frame were mine: which piece of information comes first, how much space it deserves, and how to tell one product line from another from a distance without losing the buyer. So the pack became one visual system in several colours, not a set of separate labels.\n\n§ The result\nPacks that read from a distance and leave room for new product lines without a redesign. In commercial design, clarity is the beauty that sells.' }
+  },
+  remy: {
+    room: 3, layout: 'stack', imgs: ['rm_collage', 'rm_secret', 'rm_crimson', 'rm_sugar', 'rm_fresh'], link: 'https://www.behance.net/gallery/247797299/Remy-Body-Splash-Packaging-Design', cta: false,
+    ar: { t: 'REMY — Body Splash Collection', m: 'إعادة تصميم الهوية التجارية والعبوات',
+      b: 'مش مجرد scents، لكن هوية بصرية مبنية على المزاج والتناقض والإحساس.\n\nالهدف مكنش مجرد «تغيير ليبل»، كان خلق حالة لكل عبوة تعبر عن شخصية اللي هيستخدمها:\n\nSECRET | هدوء الليل وعمق لا يُحكى، تصميم Minimal غامض بلمسات ذهبية.\n\nCRIMSON TOUCH | دفء يترك أثره، درجات الأحمر الغنية لتعكس القوة والروح الشرقية الجذابة.\n\nSUGAR CRAVE | حلاوة خفيفة ولمسة أنثوية أقرب للهمس.\n\nFRESH BREEZE | نقاء يُشبه البدايات، تصميم خفيف ومريح للعين يعبر عن الانتعاش بدون مجهود.\n\nDifferent moods | One soul' },
+    en: { t: 'REMY — Body Splash Collection', m: 'Brand identity and packaging redesign',
+      b: 'Not just scents, but a visual identity built on mood, contrast and feeling.\n\nThe goal was never just “changing a label”; it was to create a mood for each bottle that expresses the personality of whoever wears it:\n\nSECRET | The calm of night and a depth that cannot be told; a mysterious minimal design with golden touches.\n\nCRIMSON TOUCH | A warmth that leaves its mark; rich shades of red to reflect strength and an alluring oriental spirit.\n\nSUGAR CRAVE | A light sweetness and a feminine touch, closer to a whisper.\n\nFRESH BREEZE | A purity like beginnings; a light design, easy on the eye, expressing freshness without effort.\n\nDifferent moods | One soul' }
+  },
+  lifemakers: {
+    room: 4, layout: 'stack', imgs: ['lm_vent', 'lm_cover', 'lm_mock'], link: 'https://www.behance.net/gallery/239733495/Tri-fold-Brochure-Design-Print-Layout', cta: false,
+    ar: { t: 'بروشور ثلاثي الطي', m: 'تصميم مطبوعات | مبادرة تبرّع',
+      b: '§ الطلب\nبروشور ثلاثي الطي لمبادرة تبرّع هدفها توفير جهاز تنفس صناعي حديث لخدمة الأطفال والرضّع داخل الحضّانة، نظرًا للاحتياج الحرج. وصُمّم ليُوزَّع على المحلات والمصانع والشركات، أي على قارئ يمرّ به سريعًا في مكان عمله.\n\n§ السؤال\nكيف نحوّل أرقامًا وإحصائيات معقّدة إلى تنسيق مفهوم، أو عنصر بصري سلس يُفهم بوضوح في أقل وقت ممكن، من النظرة الأولى؟\n\n§ التحدي\nورقة مطوية واحدة عليها أن تحمل قضيّة إنسانية، واحتياجًا ماليًا، وطرق دفع متعدّدة، ثم تدفع قارئها إلى الفعل خلال ثوانٍ. القارئ لا يمنح البروشور وقتًا طويلًا، والتبرّع قرار يحتاج إلى ثقة ووضوح قبل أي شيء.\n\n§ الفكرة\nالغلاف يبدأ بالإنسان لا بالمعلومة: صورة طفل على جهاز التنفس، وعنوان واحد كبير «مبادرة إنقاذ حياة». ثم يتدرّج الطيّ من الإحساس إلى الفهم إلى الفعل: وجه الغلاف، ثم سبب المبادرة، ثم طرق التبرّع.\n\n§ الالتزام بالهوية\nالتصميم ملتزم بالهوية المؤسسية للجهة: ألوانها وشعارها ونبرتها البصرية. الدور هنا كان تنظيم المحتوى داخل هذه الهوية بدقّة، لا الخروج عنها؛ فالأزرق الداكن حاضر كما هو، والأصفر يقود العين إلى نقاط الفعل (الأسهم والمربّعات).\n\n§ كيف سهّلتُ التبرّع؟\nرموز QR واضحة للتواصل عبر واتساب وفيسبوك وزيارة الموقع، وإطارات منقّطة تعزل كل خطوة عن غيرها، مع عنوان المقرّ وقنوات الدفع في شريط واحد أسفل الصفحة.\n\n§ النتيجة\nبروشور يُقرأ بسرعة، ويحوّل التعاطف إلى خطوة عملية بأقل جهد.\n\n§ القضية نفسها، على الشاشة\nلأن القضية واحدة، صغتُ لها تصميمًا للتواصل الاجتماعي بعنوان «المعجزة مش بعيدة… ممكن تبدأ بنفس»، يضع تكلفة الجهاز (٦٥٠٫٠٠٠ جنيه) أمام القارئ بوضوح. انتشر التصميم على فيسبوك وحصد نحو ٩٠٠ إعجاب، وهو أول ما يظهر هنا لأنه واجهة القضية قبل أن يصل القارئ إلى البروشور.' },
+    en: { t: 'Tri-fold brochure', m: 'Print design | A donation initiative',
+      b: '§ The request\nA tri-fold brochure for a donation initiative aiming to provide a modern ventilator for children and infants in the incubator ward, because of the critical need. It was designed to be handed out to shops, factories and companies, so to a reader passing it quickly in a workplace.\n\n§ The question\nHow do we turn complex figures and statistics into a clear format, or a smooth visual element that is understood at first glance, in the shortest possible time?\n\n§ The challenge\nOne folded sheet has to carry a human cause, a financial need and several payment routes, then move its reader to act within seconds. A reader gives a brochure very little time, and donating is a decision that needs trust and clarity before anything else.\n\n§ The idea\nThe cover starts with the person, not the information: a child on a ventilator, and one large headline, “A Life-Saving Initiative”. Then the folds lead from feeling to understanding to action: the cover, then the reason for the initiative, then the ways to give.\n\n§ Staying true to the identity\nThe design stays faithful to the organisation\'s corporate identity: its colours, logo and visual tone. The job was to organise the content precisely inside that identity, not to step outside it; the deep blue stays as it is, and the yellow leads the eye to the points of action (arrows and squares).\n\n§ How I made giving easier\nClear QR codes to reach out through WhatsApp, Facebook and the website, dotted frames that separate each step, the address, and the payment channels in a single strip at the bottom.\n\n§ The result\nA brochure that reads fast and turns empathy into a practical step with the least effort.\n\n§ The same cause, on screen\nBecause the cause is one, I also designed a social media piece titled “The miracle is not far… it can start with a breath”, which puts the cost of the ventilator (650,000 EGP) clearly in front of the reader. It spread on Facebook and gathered around 900 likes, and it comes first here because it is the face of the cause before the reader reaches the brochure.' }
+  },
+  khuta: {
+    room: 4, layout: 'stack', imgs: ['kh_flat', 'kh_mock'], link: null, cta: true,
+    ar: { t: 'جراب فولدر | خُطى', m: 'تصميم مطبوعات | خطة مؤسسية',
+      b: '§ الطلب\nجراب فولدر (Pocket Folder) يحمل أوراق خطة مؤسسية باسم «خُطى»، ويكون أول ما تراه الجهة التي تتسلّمها.\n\n§ الفكرة\nالاسم نفسه حركة، فجعلتُ الشكل يتحرّك: مساحة مائلة في أسفل التصميم توحي بالصعود درجةً بعد درجة، والشعار الأبيض يتوسّط الأزرق العميق بلا زحام، ومعه عبارة الخطة «رؤيتنا واحدة، خطواتنا أقوى».\n\n§ الالتزام بالهوية\nالألوان والشعار من هوية الجهة كما هي؛ عملي كان تنظيمها في قطعة مطبوعة واحدة تُقرأ بوضوح وتُحفظ بسهولة.\n\n§ العرض\nالتصميم المسطّح أولًا كما يُرسل للمطبعة، ثم النموذج المجسّم في النهاية.' },
+    en: { t: 'Pocket folder | Khuta', m: 'Print design | An organisational plan',
+      b: '§ The request\nA pocket folder to carry the papers of an organisational plan called “Khuta” (Steps), and to be the first thing the receiving party sees.\n\n§ The idea\nThe name itself is a movement, so I made the shape move: a slanted area at the bottom suggests climbing step by step, and the white logo sits in the deep blue without crowding, with the plan line “One vision, stronger steps”.\n\n§ Staying true to the identity\nThe colours and logo come from the organisation identity as they are; my job was to arrange them on one printed piece that reads clearly and is easy to keep.\n\n§ The presentation\nThe flat design first, as it goes to the printer, then the 3D mockup at the end.' }
+  },
+  ramadan: {
+    room: 1, layout: 'stack', imgs: ['rd_bakkar', 'rd_fanous', 'rd_wasal', 'rd_bunood'], link: null, cta: true,
+    ar: { t: 'حملة «الناس لبعضها»', m: 'حملة إعلانية رمضانية | سوشيال ميديا',
+      b: '§ الطلب\nحملة رمضانية للتكافل تعرض كراتين غذائية ووجبات إفطار وبنود تبرّع متعدّدة عبر منصات التواصل.\n\n§ السؤال\nفي رمضان تمتلئ الشاشات بإعلانات التبرّع المتشابهة. كيف تبدو هذه الحملة كحكاية يعرفها الناس، لا كإعلان عابر بين عشرات الإعلانات؟\n\n§ الفكرة\nالحنين. استعنتُ بشخصيات من ذاكرة الطفولة، مثل بكّار والفانوس، لتحمل رسالة التبرّع بدفءٍ مألوف، فيشعر القارئ أن الدعوة جاءته من بيته لا من جهة بعيدة.\n\n§ التنفيذ\nالأزرق الليلي يجمع القطع كلّها في هوية واحدة، والسعر (كرتونة، وجبة) يظهر بخط كبير في مكانٍ ثابت ليُقرأ بنظرة، وتبقى الشخصية هي ما يُتذكَّر.' },
+    en: { t: 'The “People for Each Other” campaign', m: 'A Ramadan advertising campaign | Social media',
+      b: '§ The request\nA Ramadan solidarity campaign presenting food cartons, iftar meals and several donation options across social platforms.\n\n§ The question\nIn Ramadan the screens fill with similar donation ads. How does this campaign feel like a story people know, not a passing ad among dozens?\n\n§ The idea\nNostalgia. I used characters from childhood memory, such as Bakkar and the fanous lantern, to carry the donation message with a familiar warmth, so the reader feels the invitation came from home, not from a distant organisation.\n\n§ The execution\nA night-blue ties every piece into one identity, the price (carton, meal) sits in large type in a fixed place so it reads at a glance, and the character is what is remembered.' }
+  },
+  adahi: {
+    room: 1, layout: 'stack', imgs: ['ad_bunood', 'ad_families', 'ad_meat27', 'ad_scale', 'ad_pot', 'ad_mock'], link: null, cta: true,
+    ar: { t: 'حملة «الأضاحي»', m: 'حملة إعلانية | قيادة الاستراتيجية الإعلامية والبصرية',
+      b: '§ الطلب\nحملة إنسانية في موسم الأضاحي تدعو إلى التبرّع عبر صكوك ولحوم ووجبات.\n\n§ السؤال\nكيف نعرض عدة خيارات بأسعار مختلفة دون أن يضيع القارئ بينها؟\n\n§ الفكرة\nكل تصميم يقول شيئًا واحدًا فقط. تصميمٌ يرسم الطريق وخياراته: لحوم وصكوك ووجبات. وآخر يضع الحجم أمام العين: أكثر من ٣٠ ألف أسرة تنتظر. وثالث يشرح القيمة: صكٌّ واحد يصير ٢٧ كيلو. ورابع يوازن بين ٤٠٠ جنيه وقطعة لحم على ميزان واحد. وما يربط الجميع: سماء الغروب الدافئة، والمعلومات التي لا تتغيّر مكانها، وشريط طرق الدفع في الأسفل.\n\n§ ما وراء التصميم\n«انتهاء الرحلة الإبداعية لا يعني انتهاء الأثر. ليس كل ما يُبصَر يُدرَك؛ بعض التفاصيل وُجدت لتُشعِر، لا لتُرى. وكل عرض وكل زاوية مدروسان ليصنعا تجربة بصرية هادئة، صامتة، لكنها محمّلة بالمعاني.»\n\n§ الأثر\nمن أرقام هذه الحملة وحدها: نحو ٣١٧٫٩ ألف مشاهدة، و٩٣ رسالة، و٦٧ طلب تطوّع. وأخبرني فريق العمل أن تصاميمها كانت الأعلى تفاعلًا.' },
+    en: { t: 'The “Adahi” campaign', m: 'Advertising campaign | Media and visual strategy lead',
+      b: '§ The request\nA humanitarian campaign for the Adahi season, inviting donations through shares, meat and meals.\n\n§ The question\nHow do we present several options at different prices without losing the reader among them?\n\n§ The idea\nEach design says only one thing. One draws the road and its options: meat, shares and meals. Another puts the scale before the eye: more than 30,000 families waiting. A third explains the value: one share becomes 27 kilos. A fourth weighs 400 pounds against a piece of meat on a single scale. What binds them all: the warm sunset sky, information that never changes place, and the payment-methods strip at the bottom.\n\n§ Beyond the design\n“The end of the creative journey does not mean the end of its impact. Not everything seen is understood; some details exist to be felt, not to be seen. Every presentation and every angle is considered to create a calm, silent visual experience, yet full of meaning.”\n\n§ The impact\nFrom the figures of this campaign alone: about 317.9K views, 93 messages and 67 volunteer requests. The team told me its designs had the highest engagement.' }
+  },
+  dokangi: {
+    room: 5, layout: 'row', imgs: ['dok_dark', 'dok_light'], link: null, cta: true,
+    ar: { t: 'Dokangi', m: 'شعار', b: '' },
+    en: { t: 'Dokangi', m: 'Logo', b: '' }
+  },
+  sellsmart: {
+    room: 5, layout: 'stack', imgs: ['ss_logo', 'ss_bill', 'ss_lap'], link: null, cta: true,
+    ar: { t: 'SellSmart', m: 'من فكرة بسيطة إلى هوية بصرية قوية',
+      b: '§ الطلب\nكان طلب العميل: «أنا محتاج لوجو لكلمة Sell Smart، وكل اللي عاوزه يكون شكله جذاب».\n\n§ السؤال\nهل مهمة المصمم أن ينفّذ المطلوب فقط؟ أنا دائمًا شايفة إن لا؛ المصمم يضيف قيمة إبداعية تخلّي الشغل يتكلم عن نفسه. فقرّرت أوسّع الفكرة وأبني هوية بصرية كاملة من طلب بسيط.\n\n§ كيف حلّيت المشكلة؟\nكلمتان مكتوبتان لوحدهما لا تخبران ماذا تفعل الشركة. حوّلت الاسم إلى حكاية: رمز بصري قوي عبارة عن سهم صاعد مع رسم بياني. هذا الرمز ليس مجرد شكل، بل يحكي هدف الشركة الأساسي: تحقيق نموّ مستمر في المبيعات.\n\n§ لماذا هذه الألوان؟\nالأزرق الغامق: يعبّر عن الثقة والاستقرار.\nالأخضر الفاتح: يرمز للنمو والنجاح.\nواخترت خطوطًا عصرية ونظيفة لتبان احترافية.\n\n§ النتيجة\nشعار متكامل يحكي قصة النجاح والنمو بشكل بصري قوي ومؤثر.' },
+    en: { t: 'SellSmart', m: 'From a simple request to a strong visual identity',
+      b: '§ The request\nThe client asked: “I need a logo for the words Sell Smart, and all I want is for it to look attractive.”\n\n§ The question\nIs a designer’s job only to carry out what was asked? I have always believed it is not: the designer adds creative value that lets the work speak for itself. So I decided to widen the idea and build a complete visual identity from a simple request.\n\n§ How I solved it\nTwo written words alone do not say what the company does. I turned the name into a story: a strong visual symbol, a rising arrow with a chart, which tells the company’s core goal: continuous growth in sales.\n\n§ Why these colours?\nDeep blue expresses trust and stability.\nLight green symbolises growth and success.\nI chose modern, clean typefaces so it reads as professional.\n\n§ The result\nA complete logo that tells the story of success and growth in a strong, memorable visual way.' }
+  }
+};
+
+var WAMSG = {
+  saudi: { ar: 'مرحبًا أماني، شاهدت تصاميم اليوم الوطني السعودي لـ BS Burger وأريد تصاميم سوشيال ميديا بروح مشابهة لعلامتي.', en: 'Hello Amany, I saw the Saudi National Day designs for BS Burger and I want social media designs with a similar spirit for my brand.' },
+  taqreer: { ar: 'مرحبًا أماني، شاهدت هوية تقرير وأريد هوية بصرية بفكرة جريئة لعلامتي.', en: 'Hello Amany, I saw the Taqreer identity and I want a bold-idea brand identity for my brand.' },
+  raydan: { ar: 'مرحبًا أماني، شاهدت إعادة تصميم هوية ريدان وأريد إعادة تصميم هوية علامتي.', en: 'Hello Amany, I saw the Raydan identity redesign and I want to redesign the identity of my brand.' },
+  lindo: { ar: 'مرحبًا أماني، أعجبني تغليف ليندو وأريد تصميم تغليف لمنتجي.', en: 'Hello Amany, I liked the Lindo packaging and I want packaging designed for my product.' },
+  wadi: { ar: 'مرحبًا أماني، شاهدت عبوات أعلاف الوادي وأريد تصميم عبوات لمنتجاتي.', en: 'Hello Amany, I saw the Al Wadi feed packaging and I want packaging designed for my products.' },
+  remy: { ar: 'مرحبًا أماني، شاهدت تصميم Remy Body Splash وأريد تصميم عبوات لمنتجي.', en: 'Hello Amany, I saw the Remy Body Splash design and I want packaging designed for my product.' },
+  lifemakers: { ar: 'مرحبًا أماني، شاهدت البروشور ثلاثي الطي وأريد تصميم مطبوعات لجهتي.', en: 'Hello Amany, I saw the tri-fold brochure and I want print materials designed for my organisation.' },
+  khuta: { ar: 'مرحبًا أماني، شاهدت تصميم جراب الفولدر «خُطى» وأريد مطبوعات مؤسسية لجهتي.', en: 'Hello Amany, I saw the Khuta pocket folder and I want corporate print materials for my organisation.' },
+  ramadan: { ar: 'مرحبًا أماني، شاهدت حملة «الناس لبعضها» وأريد حملة إعلانية لعلامتي.', en: 'Hello Amany, I saw the People for Each Other campaign and I want an advertising campaign for my brand.' },
+  adahi: { ar: 'مرحبًا أماني، شاهدت حملة «الأضاحي» وأريد حملة إعلانية لعلامتي.', en: 'Hello Amany, I saw the Adahi campaign and I want an advertising campaign for my brand.' },
+  dokangi: { ar: 'مرحبًا أماني، شاهدت شعار Dokangi وأريد تصميم شعار لعلامتي.', en: 'Hello Amany, I saw the Dokangi logo and I want a logo designed for my brand.' },
+  sellsmart: { ar: 'مرحبًا أماني، شاهدت شعار SellSmart وأريد تصميم شعار لعلامتي.', en: 'Hello Amany, I saw the SellSmart logo and I want a logo designed for my brand.' }
+};
+
+/* order of the deck: strongest first. Dokangi is kept in PROJ but left out of the deck. */
+var DECK = ['typo', 'raydan', 'taqreer', 'saudi', 'ramadan', 'adahi', 'remy', 'lindo', 'wadi', 'lifemakers', 'khuta', 'sellsmart'];
+var N = DECK.length;
+/* front image per card; mode: contain on a plate sampled from the image corners, or cover */
+var FRONT = { typo: ['typo'], saudi: ['sa_trio', 'cover'], taqreer: ['tq_podium'], raydan: ['ry_logo'], lindo: ['ln_purple'], wadi: ['wd_sheep'],
+  remy: ['rm_secret'], lifemakers: ['lm_mock'], khuta: ['kh_mock'], ramadan: ['rd_bakkar'], adahi: ['ad_meat27'], dokangi: ['dok_dark'], sellsmart: ['ss_bill'] };
+/* back of each card: flat palette [background, text, accent] — one per project, never a constant mark */
+var BACK = { typo: ['#C2187A', '#EFE6D6', '#EFE6D6'], saudi: ['#EFE6D6', '#0E0B0A', '#C2187A'], taqreer: ['#1B1613', '#EFE6D6', '#E85DAE'],
+  raydan: ['#A8106A', '#EFE6D6', '#EFE6D6'], lindo: ['#E2D6C0', '#0E0B0A', '#C2187A'], wadi: ['#1B1613', '#EFE6D6', '#E85DAE'],
+  remy: ['#C2187A', '#EFE6D6', '#EFE6D6'], lifemakers: ['#EFE6D6', '#0E0B0A', '#A8106A'], khuta: ['#1B1613', '#EFE6D6', '#E85DAE'], ramadan: ['#A8106A', '#EFE6D6', '#EFE6D6'], adahi: ['#E2D6C0', '#0E0B0A', '#C2187A'], dokangi: ['#1B1613', '#EFE6D6', '#E85DAE'],
+  sellsmart: ['#E2D6C0', '#0E0B0A', '#C2187A'] };
+
+/* ---------- helpers ---------- */
+function $(s) { return document.querySelector(s); }
+var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var CAN_HOVER = window.matchMedia ? window.matchMedia('(hover: hover) and (pointer: fine)').matches : false;
+var lang = 'ar';
+try { var sv = localStorage.getItem('amany-lang'); if (sv === 'en' || sv === 'ar') lang = sv; } catch (e) {}
+function L() { return UI[lang]; }
+function P(id) { return PROJ[id][lang]; }
+function roomName(r) { return ROOMS[r][lang]; }
+function waLink(msg) { return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg || L().waMsg); }
+function num(n) { var s = (n < 10 ? '0' : '') + n; return lang === 'ar' ? s.replace(/\d/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.charAt(d); }) : s; }
+function firstOfRoom(r) { for (var i = 0; i < N; i++) if (PROJ[DECK[i]].room === r) return i; return 0; }
+
+var body = document.body;
+var els = {
+  bar: $('#bar'), stage: $('#stage'), hero: $('#hero'), cap: $('#cap'), chips: $('#chips'), ticks: $('#ticks'), facts: $('#facts'),
+  cNum: $('#cNum'), cTot: $('#cTot'), cRoom: $('#cRoom'), cTitle: $('#cTitle'), cMeta: $('#cMeta'), cRead: $('#cRead'), cWa: $('#cWa'), cLink: $('#cLink'), capMain: $('#capMain'),
+  prevBtn: $('#prevBtn'), nextBtn: $('#nextBtn'),
+  list: $('#list'), detail: $('#detail'), dClose: $('#dClose'), dMeta: $('#dMeta'), dTitle: $('#dTitle'), tip: $('#tip'),
+  dK: $('#dK'), dBody: $('#dBody'), dCta: $('#dCta'), dGallery: $('#dGallery'), about: $('#about'), aClose: $('#aClose'),
+  listBtn: $('#listBtn'), langBtn: $('#langBtn'), waTop: $('#waTop'), waEnd: $('#waEnd'), startBtn: $('#startBtn'),
+  intro: $('#intro'), cur: $('#cur'), curR: $('#curR')
+};
+
+var mode = 'gallery';
+var gl = null;
+var S = { view: 'hero', pos: 1 };
+var lastFocus = null;
+var tapFlip = false;
+
+function setBarH() { document.documentElement.style.setProperty('--barH', els.bar.offsetHeight + 'px'); }
+
+/* ---------- text ---------- */
+function applyLang() {
+  var d = document.documentElement;
+  d.lang = lang; d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  var u = L();
+  document.querySelectorAll('[data-k]').forEach(function (n) { var k = n.getAttribute('data-k'); if (u[k] != null) n.textContent = u[k]; });
+  document.querySelectorAll('[data-kh]').forEach(function (n) { var k = n.getAttribute('data-kh'); if (u[k] != null) n.innerHTML = u[k]; });
+  els.langBtn.textContent = u.langBtn; els.langBtn.setAttribute('aria-label', u.langLabel);
+  els.stage.setAttribute('aria-label', u.canvasLabel);
+  els.cRead.textContent = u.read;
+  els.dClose.setAttribute('aria-label', u.close); els.aClose.setAttribute('aria-label', u.close);
+  els.chips.setAttribute('aria-label', u.nav);
+  els.prevBtn.setAttribute('aria-label', u.prev);
+  els.listBtn.textContent = mode === 'list' ? u.gallery : u.list;
+  els.waTop.href = waLink(); els.waEnd.href = waLink();
+  els.facts.innerHTML = '';
+  u.facts.forEach(function (f) { var li = document.createElement('li'); var b = document.createElement('b'); b.textContent = f[0]; li.appendChild(b); li.appendChild(document.createTextNode(f[1])); els.facts.appendChild(li); });
+  document.title = lang === 'ar' ? 'أماني متولي | مصممة جرافيك' : 'Amany Metwaly | Graphic Designer';
+  buildChips(); buildTicks(); buildList(); buildSvc(); setBarH();
+  fillCap(S.pos);
+}
+
+function buildChips() {
+  els.chips.innerHTML = '';
+  ROOMS.forEach(function (r, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.setAttribute('data-room', i);
+    b.textContent = r[lang];
+    b.addEventListener('click', function () { goRoom(i); });
+    els.chips.appendChild(b);
+  });
+}
+function buildTicks() {
+  els.ticks.innerHTML = '';
+  DECK.forEach(function (id, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tick'; b.setAttribute('aria-label', P(id).t);
+    b.addEventListener('click', function () { setIndex(i); });
+    els.ticks.appendChild(b);
+  });
+}
+function buildList() {
+  els.list.innerHTML = '';
+  ROOMS.forEach(function (r, ri) {
+    var ids = DECK.filter(function (k) { return PROJ[k].room === ri; });
+    if (!ids.length) return;
+    var h = document.createElement('h2'); h.setAttribute('data-room', ri); h.textContent = r[lang];
+    els.list.appendChild(h);
+    var grid = document.createElement('div'); grid.className = 'cards';
+    ids.forEach(function (id) {
+      var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'card';
+      var img = document.createElement('img'); img.src = 'img/t_' + FRONT[id][0] + '.webp'; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+      var ct = document.createElement('div'); ct.className = 'ct';
+      var b = document.createElement('b'); b.textContent = P(id).t;
+      var sp = document.createElement('span'); sp.textContent = P(id).m;
+      ct.appendChild(b); ct.appendChild(sp); btn.appendChild(img); btn.appendChild(ct);
+      btn.addEventListener('click', function () { openDetail(id); });
+      grid.appendChild(btn);
+    });
+    els.list.appendChild(grid);
+  });
+}
+
+/* ---------- caption bar ---------- */
+function fillCap(i) {
+  var id = DECK[i], pr = PROJ[id];
+  els.cNum.textContent = num(i + 1); els.cTot.textContent = '/ ' + num(N);
+  els.cRoom.textContent = roomName(pr.room); els.cTitle.textContent = P(id).t; els.cMeta.textContent = P(id).m;
+  var vv = lang === 'ar' ? ROOMS[pr.room].pa : ROOMS[pr.room].pe;
+  $('#cVerse').hidden = !vv; if (vv) { $('#cV1').textContent = vv[0]; $('#cV2').textContent = vv[1]; }
+  els.cRead.textContent = L().read;
+  if (pr.link) { els.cLink.hidden = false; els.cLink.href = pr.link; els.cLink.textContent = pr.linkKey ? L()[pr.linkKey] : L().caseBeh; } else els.cLink.hidden = true;
+  var wm = WAMSG[id];
+  els.cWa.hidden = !wm;
+  if (wm) { els.cWa.href = waLink(wm[lang]); els.cWa.textContent = L().waMe; }
+  els.ticks.querySelectorAll('.tick').forEach(function (t, k) { if (k === i) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current'); });
+  els.chips.querySelectorAll('.chip').forEach(function (c) {
+    var on = S.view === 'deck' && Number(c.getAttribute('data-room')) === pr.room;
+    if (on) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+  });
+  els.nextBtn.setAttribute('aria-label', i === N - 1 ? L().aboutNext : L().next);
+}
+function setIndex(i, silent) {
+  i = Math.max(0, Math.min(N - 1, i));
+  var changed = i !== S.pos;
+  S.pos = i; tapFlip = false;
+  fillCap(i);
+  [i - 1, i, i + 1].forEach(function (k) { if (k >= 0 && k < N) { var im = new Image(); im.decoding = 'async'; im.src = 'img/d_' + PROJ[DECK[k]].imgs[0] + '.webp'; } });
+  if (changed && !silent) { els.capMain.classList.remove('cap-in'); void els.capMain.offsetWidth; els.capMain.classList.add('cap-in'); }
+}
+function step(delta) {
+  if (S.view !== 'deck') { enterDeck(1); return; }
+  if (delta > 0 && S.pos === N - 1) { openAbout(); return; }
+  setIndex(S.pos + delta);
+}
+var demoDone = false;
+function enterDeck(i) {
+  if (S.view !== 'deck') {
+    S.view = 'deck'; body.setAttribute('data-view', 'deck');
+    if (gl && !demoDone && !REDUCED) { demoDone = true; setTimeout(function () { if (S.view === 'deck' && gl) gl.demo(); }, 1900); }
+  }
+  setIndex(i);
+}
+function goHero() {
+  S.view = 'hero'; body.setAttribute('data-view', 'hero'); tapFlip = false;
+  els.chips.querySelectorAll('.chip').forEach(function (c) { c.removeAttribute('aria-current'); });
+}
+els.cRead.addEventListener('click', function () { openDetail(DECK[S.pos]); });
+els.prevBtn.addEventListener('click', function () { step(-1); });
+els.nextBtn.addEventListener('click', function () { step(1); });
+
+/* ---------- detail (opens with a camera push) ---------- */
+function openDetail(id) {
+  var pr = PROJ[id], t = P(id);
+  lastFocus = document.activeElement;
+  els.dMeta.textContent = t.m; els.dTitle.textContent = t.t;
+  els.dK.textContent = L().hashiya; els.dBody.textContent = '';
+  String(t.b || '').split('\n').forEach(function (ln, k, arr) {
+    if (ln.indexOf('§ ') === 0) { var h = document.createElement('span'); h.className = 'sec'; h.textContent = ln.slice(2); els.dBody.appendChild(h); }
+    else els.dBody.appendChild(document.createTextNode(ln + (k < arr.length - 1 ? '\n' : '')));
+  });
+  $('.d-note').hidden = !t.b;
+  els.dCta.innerHTML = '';
+  if (pr.link) {
+    var a = document.createElement('a'); a.className = 'btn-ink'; a.href = pr.link; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.textContent = pr.linkKey ? L()[pr.linkKey] : L().caseBeh; els.dCta.appendChild(a);
+  }
+  var wm = WAMSG[id]; var w = document.createElement('a'); w.className = 'btn-line'; w.href = waLink(wm && wm[lang]); w.target = '_blank'; w.rel = 'noopener noreferrer';
+  w.textContent = wm ? L().waProject : L().wa; els.dCta.appendChild(w);
+  els.dGallery.className = 'd-gallery' + (pr.layout === 'row' ? ' row' : '');
+  els.dGallery.innerHTML = '';
+  pr.imgs.forEach(function (im, i) {
+    var f = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = 'img/d_' + im + '.webp'; img.alt = t.t + ' ' + (i + 1); img.decoding = 'async';
+    if (i > 1) img.loading = 'lazy';
+    f.appendChild(img);
+    if (pr.caps && pr.caps[i]) { var fc = document.createElement('figcaption'); fc.textContent = pr.caps[i]; f.appendChild(fc); }
+    els.dGallery.appendChild(f);
+    if (pr.video && pr.videoAfter === i) addVideo(pr);
+  });
+  if (pr.video && pr.videoAfter === undefined) addVideo(pr);
+  function addVideo(pr) {
+    var vf = document.createElement('figure');
+    var v = document.createElement('video');
+    v.controls = true; v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+    v.setAttribute('aria-label', L().video); v.src = 'img/' + pr.video;
+    var cap = document.createElement('figcaption'); cap.textContent = L().video;
+    vf.appendChild(v); vf.appendChild(cap); els.dGallery.appendChild(vf);
+  }
+  els.tip.hidden = true;
+  els.detail.hidden = false; els.detail.scrollTop = 0;
+  body.style.overflow = 'hidden';
+  if (gl) gl.cover(true);
+  els.dClose.focus();
+}
+function closeDetail() {
+  if (els.detail.hidden) return;
+  els.detail.hidden = true;
+  if (!els.about.classList.contains('open') && mode !== 'list') body.style.overflow = 'hidden'; else if (mode === 'list') body.style.overflow = '';
+  els.dGallery.querySelectorAll('video').forEach(function (v) { try { v.pause(); } catch (e) {} });
+  if (gl && !els.about.classList.contains('open')) gl.cover(false);
+  if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+}
+function openAbout() {
+  lastFocus = document.activeElement;
+  els.about.classList.add('open'); els.about.scrollTop = 0; body.style.overflow = 'hidden';
+  if (gl) gl.cover(true);
+  els.aClose.focus();
+}
+function closeAbout() {
+  if (!els.about.classList.contains('open')) return;
+  els.about.classList.remove('open');
+  if (gl) gl.cover(false);
+  if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+}
+els.dClose.addEventListener('click', closeDetail);
+els.aClose.addEventListener('click', closeAbout);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { closeDetail(); closeAbout(); return; }
+  if (mode !== 'gallery' || !gl || !els.detail.hidden || els.about.classList.contains('open')) return;
+  var rtl = lang === 'ar';
+  if (e.key === 'ArrowLeft') step(rtl ? 1 : -1);
+  else if (e.key === 'ArrowRight') step(rtl ? -1 : 1);
+  else if (e.key === 'Enter' && S.view === 'deck' && !/^(BUTTON|A)$/.test((e.target && e.target.tagName) || '')) openDetail(DECK[S.pos]);
+});
+
+/* ---------- services + request form (composes a WhatsApp message) ---------- */
+function buildSvc() {
+  var ul = $('#svc'), sel = $('#fSvc'), keep = sel.selectedIndex;
+  ul.innerHTML = ''; sel.innerHTML = '';
+  L().svc.forEach(function (s) {
+    var li = document.createElement('li'), b = document.createElement('b'), sp = document.createElement('span');
+    b.textContent = s[0]; sp.textContent = s[1]; li.appendChild(b); li.appendChild(sp); ul.appendChild(li);
+    var o = document.createElement('option'); o.value = s[0]; o.textContent = s[0]; sel.appendChild(o);
+  });
+  sel.selectedIndex = keep > 0 ? keep : 0;
+}
+$('#req').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var url = waLink(L().waForm($('#fName').value.trim(), $('#fSvc').value, $('#fMsg').value.trim()));
+  var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+});
+
+/* ---------- copy ---------- */
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var txt = b.getAttribute('data-copy');
+    var done = function () { b.textContent = L().copied; setTimeout(function () { b.textContent = L().copy; }, 1500); };
+    var sel = function () {
+      var n = b.parentNode.querySelector('.n');
+      try { var r = document.createRange(); r.selectNodeContents(n); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, sel); else sel();
+  });
+});
+
+/* ---------- modes + navigation ---------- */
+function setMode(m) {
+  mode = m;
+  body.classList.toggle('mode-list', m === 'list');
+  els.list.hidden = m !== 'list';
+  els.listBtn.textContent = m === 'list' ? L().gallery : L().list;
+  document.documentElement.style.overflow = m === 'list' ? '' : 'hidden';
+  body.style.overflow = m === 'list' ? '' : 'hidden';
+  closeAbout(); closeDetail();
+  window.scrollTo(0, 0);
+  if (m === 'gallery' && gl) gl.resize();
+  setBarH();
+}
+els.listBtn.addEventListener('click', function () {
+  if (mode === 'list') { if (gl) setMode('gallery'); } else setMode('list');
+});
+els.langBtn.addEventListener('click', function () {
+  lang = lang === 'ar' ? 'en' : 'ar';
+  try { localStorage.setItem('amany-lang', lang); } catch (e) {}
+  closeDetail();
+  applyLang();
+  if (gl) gl.relayout();
+});
+function goRoom(i) {
+  if (mode === 'list') {
+    var t = els.list.querySelector('h2[data-room="' + i + '"]');
+    if (t) t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    else els.about.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    return;
+  }
+  if (i === ROOMS.length - 1) { openAbout(); return; }
+  enterDeck(firstOfRoom(i));
+}
+els.startBtn.addEventListener('click', function () { enterDeck(1); });
+$('#brand').addEventListener('click', function (e) { e.preventDefault(); closeAbout(); closeDetail(); if (mode === 'list') window.scrollTo(0, 0); else goHero(); });
+window.addEventListener('resize', setBarH);
+
+/* ---------- cursor ---------- */
+var curHot = false;
+function setHot(h) { if (h !== curHot) { curHot = h; els.curR.classList.toggle('hot', h); } }
+(function () {
+  if (!CAN_HOVER) return;
+  body.classList.add('cur-on');
+  var tx = -100, ty = -100, rx = -100, ry = -100;
+  window.addEventListener('pointermove', function (e) { tx = e.clientX; ty = e.clientY; els.cur.style.transform = 'translate(' + tx + 'px,' + ty + 'px)'; if (e.target && e.target.closest && e.target.closest('a,button,.chip,.tick')) setHot(true); else if (!(gl && gl.hot())) setHot(false); });
+  (function loop() { rx += (tx - rx) * 0.18; ry += (ty - ry) * 0.18; els.curR.style.transform = 'translate(' + rx + 'px,' + ry + 'px)'; requestAnimationFrame(loop); })();
+})();
+
+/* ---------- 3D: orbit hero, then a deck of three cards, the middle one turning ---------- */
+function init3D() {
+  if (!window.THREE) throw new Error('three missing');
+  var THREE = window.THREE;
+  var renderer = new THREE.WebGLRenderer({ canvas: els.stage, antialias: true, powerPreference: 'high-performance' });
+  var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.75 : 2));
+  renderer.setClearColor(0x0E0B0A, 1);
+  var scene = new THREE.Scene();
+  var FOV = 30;
+  var camera = new THREE.PerspectiveCamera(FOV, 1, 10, 8000);
+  var aniso = 1; try { aniso = renderer.capabilities.getMaxAnisotropy() || 1; } catch (e) {}
+
+  var C = { paper: new THREE.Color(0xEFE6D6), fx: new THREE.Color(0xC2187A), fxl: new THREE.Color(0xE85DAE), line: new THREE.Color(0x4A413A), deep: new THREE.Color(0x2E2621) };
+  var plane = new THREE.PlaneGeometry(1, 1);
+  var circle = new THREE.CircleGeometry(1, 64);
+  var FW = 1024, FH = 1280;
+  var sgn = lang === 'ar' ? -1 : 1;
+
+  function mkCanvas(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+  function mkTex(c) { var t = new THREE.CanvasTexture(c); t.anisotropy = aniso; return t; }
+  function fontStr(w, s, kind) {
+    if (kind === 'ui') return w + ' ' + s + 'px "IBM Plex Sans Arabic", system-ui, sans-serif';
+    return w + ' ' + s + 'px ' + (lang === 'ar' ? '"Reem Kufi", "IBM Plex Sans Arabic", sans-serif' : '"Cormorant Garamond", Georgia, serif');
+  }
+  function wrap(x, text, maxW) {
+    var words = String(text).split(' '), lines = [], cur = '';
+    words.forEach(function (w) { var t = cur ? cur + ' ' + w : w; if (cur && x.measureText(t).width > maxW) { lines.push(cur); cur = w; } else cur = t; });
+    if (cur) lines.push(cur); return lines;
+  }
+
+  /* cards */
+  var cards = DECK.map(function (id, i) {
+    var g = new THREE.Group(), fl = new THREE.Group();
+    var fc = mkCanvas(FW, FH), bc = mkCanvas(FW, FH);
+    var fx = fc.getContext('2d'); fx.fillStyle = '#1B1613'; fx.fillRect(0, 0, FW, FH);
+    var ftex = mkTex(fc), btex = mkTex(bc);
+    var fm = new THREE.MeshBasicMaterial({ map: ftex, color: 0x000000 });
+    var bm = new THREE.MeshBasicMaterial({ map: btex, color: 0x000000 });
+    var f = new THREE.Mesh(plane, fm), b = new THREE.Mesh(plane, bm);
+    b.rotation.y = Math.PI;
+    f.userData = { card: i }; b.userData = { card: i };
+    fl.add(f); fl.add(b); g.add(fl); g.visible = false; scene.add(g);
+    return { id: id, g: g, fl: fl, f: f, b: b, fm: fm, bm: bm, ftex: ftex, btex: btex, fc: fc, bc: bc, img: null, plate: '#1B1613', flip: 0 };
+  });
+
+  function plateOf(img) {
+    try {
+      var c = mkCanvas(8, 8), x = c.getContext('2d'); x.drawImage(img, 0, 0, 8, 8);
+      var px = [[0, 0], [7, 0], [0, 7], [7, 7]].map(function (p) { var d = x.getImageData(p[0], p[1], 1, 1).data; return [d[0], d[1], d[2]]; });
+      var spread = 0, av = [0, 0, 0];
+      for (var ch = 0; ch < 3; ch++) { var lo = 255, hi = 0; px.forEach(function (q) { lo = Math.min(lo, q[ch]); hi = Math.max(hi, q[ch]); av[ch] += q[ch] / 4; }); spread = Math.max(spread, hi - lo); }
+      if (spread > 48) return '#1B1613';
+      return 'rgb(' + Math.round(av[0]) + ',' + Math.round(av[1]) + ',' + Math.round(av[2]) + ')';
+    } catch (e) { return '#1B1613'; }
+  }
+  function drawFront(c) {
+    if (!c.img) return;
+    var x = c.fc.getContext('2d'), img = c.img, cover = FRONT[c.id][1] === 'cover';
+    x.fillStyle = c.plate; x.fillRect(0, 0, FW, FH);
+    var s, w, h;
+    if (cover) { s = Math.max(FW / img.width, FH / img.height); }
+    else { var m = Math.round(FW * 0.06); s = Math.min((FW - 2 * m) / img.width, (FH - 2 * m) / img.height); }
+    w = img.width * s; h = img.height * s;
+    x.drawImage(img, (FW - w) / 2, (FH - h) / 2, w, h);
+    x.strokeStyle = 'rgba(239,230,214,0.22)'; x.lineWidth = 2; x.strokeRect(1, 1, FW - 2, FH - 2);
+    c.ftex.needsUpdate = true;
+  }
+  function drawBack(c, i) {
+    var pal = BACK[c.id], x = c.bc.getContext('2d'), ar = lang === 'ar', pad = 76;
+    x.setTransform(1, 0, 0, 1, 0, 0);
+    x.fillStyle = pal[0]; x.fillRect(0, 0, FW, FH);
+    try { x.direction = ar ? 'rtl' : 'ltr'; } catch (e) {}
+    x.textAlign = ar ? 'right' : 'left'; x.textBaseline = 'alphabetic';
+    var ex = ar ? FW - pad : pad;            /* text edge */
+    /* layered rings in the far corner: the idea of layers, in this card's own palette */
+    var cx0 = ar ? 0 : FW, cy0 = FH;
+    /* the first letter of this project's own name, huge and faint: a different letter on every card */
+    x.save(); x.globalAlpha = 0.14; x.fillStyle = pal[2]; x.font = fontStr(500, 620, 'd'); x.textAlign = ar ? 'left' : 'right';
+    x.fillText(String(P(c.id).t).charAt(0), ar ? 34 : FW - 34, FH - 40);
+    x.restore();
+    x.save(); x.globalAlpha = 0.4; x.strokeStyle = pal[1]; x.lineWidth = 2; x.strokeRect(30, 30, FW - 60, FH - 60); x.restore();
+    /* number */
+    x.fillStyle = pal[2]; x.font = fontStr(500, 200, 'd'); x.fillText(num(i + 1), ex, pad + 190);
+    /* category */
+    x.fillStyle = pal[1]; x.globalAlpha = 0.85; x.font = fontStr(500, 34, 'ui'); x.fillText(roomName(PROJ[c.id].room), ex, pad + 270); x.globalAlpha = 1;
+    /* title */
+    var t = P(c.id).t, size = 84, lines;
+    do { x.font = fontStr(500, size, 'd'); lines = wrap(x, t, FW - 2 * pad); size -= 6; } while (lines.length > 3 && size > 40);
+    var y = 640; x.fillStyle = pal[1];
+    lines.forEach(function (ln) { x.fillText(ln, ex, y); y += size * 1.45 + 8; });
+    /* hairline + meta */
+    y += 4; x.fillStyle = pal[2]; x.fillRect(ar ? ex - 90 : ex, y, 90, 4); y += 62;
+    x.fillStyle = pal[1]; x.globalAlpha = 0.88; x.font = fontStr(400, 33, 'ui');
+    wrap(x, P(c.id).m, FW - 2 * pad).slice(0, 3).forEach(function (ln) { x.fillText(ln, ex, y); y += 50; });
+    x.globalAlpha = 1;
+    /* open */
+    x.fillStyle = pal[2]; x.font = fontStr(500, 34, 'ui'); x.fillText((ar ? '← ' : '') + L().open + (ar ? '' : ' →'), ex, FH - pad - 8);
+    c.btex.needsUpdate = true;
+  }
+  function redrawBacks() { cards.forEach(function (c, i) { drawBack(c, i); }); }
+
+  /* orbs: one circle per project (all but the first card, which is the hero object) */
+  var orbs = [];
+  var ringsHero = new THREE.Group(), ringsDeck = new THREE.Group();
+  scene.add(ringsHero); scene.add(ringsDeck);
+  for (var j = 1; j < N; j++) (function (j) {
+    var oc = mkCanvas(256, 256), ox = oc.getContext('2d'); ox.fillStyle = '#1B1613'; ox.fillRect(0, 0, 256, 256);
+    var tex = mkTex(oc);
+    var g = new THREE.Group();
+    var m = new THREE.Mesh(circle, new THREE.MeshBasicMaterial({ map: tex, color: 0x000000 }));
+    var rm = new THREE.Mesh(new THREE.RingGeometry(1.0, 1.07, 64), new THREE.MeshBasicMaterial({ color: 0x000000 }));
+    m.userData = { orb: j }; g.add(m); g.add(rm); g.visible = false; scene.add(g);
+    var ring = (j - 1) % 3;
+    orbs.push({ j: j, g: g, m: m, rm: rm, oc: oc, tex: tex, ring: ring, a0: ((j - 1) / (N - 1)) * Math.PI * 2 + ring * 0.7, dir: ring === 1 ? -1 : 1, sp: [0.16, 0.11, 0.075][ring], hover: 0 });
+  })(j);
+  function drawOrb(o) {
+    var c = cards[o.j]; if (!c.img) return;
+    var x = o.oc.getContext('2d'), s = Math.max(256 / c.img.width, 256 / c.img.height);
+    x.fillStyle = c.plate; x.fillRect(0, 0, 256, 256);
+    x.drawImage(c.img, (256 - c.img.width * s) / 2, (256 - c.img.height * s) / 2, c.img.width * s, c.img.height * s);
+    o.tex.needsUpdate = true;
+  }
+
+  DECK.forEach(function (id, i) {
+    var im = new Image();
+    im.onload = function () {
+      cards[i].img = im; cards[i].plate = plateOf(im); drawFront(cards[i]);
+      orbs.forEach(function (o) { if (o.j === i) drawOrb(o); });
+    };
+    im.src = 'img/t_' + FRONT[id][0] + '.webp';
+  });
+
+  /* halo frame behind the centre card */
+  var halo = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-0.5, -0.5, 0), new THREE.Vector3(0.5, -0.5, 0), new THREE.Vector3(0.5, 0.5, 0), new THREE.Vector3(-0.5, 0.5, 0)]), new THREE.LineBasicMaterial({ color: 0x000000 }));
+  scene.add(halo);
+
+  /* dust */
+  var DUST = 150, dpos = new Float32Array(DUST * 3), dspd = new Float32Array(DUST), seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  for (var d = 0; d < DUST; d++) { dpos[d * 3] = rnd() * 2 - 1; dpos[d * 3 + 1] = rnd() * 2 - 1; dpos[d * 3 + 2] = -700 + rnd() * 900; dspd[d] = 0.01 + rnd() * 0.03; }
+  var dgeo = new THREE.BufferGeometry(); dgeo.setAttribute('position', new THREE.BufferAttribute(dpos, 3));
+  var dmat = new THREE.PointsMaterial({ color: 0xEFE6D6, size: 2, sizeAttenuation: false, transparent: true, opacity: 0.5 });
+  var dust = new THREE.Points(dgeo, dmat); dust.frustumCulled = false; scene.add(dust);
+
+  /* layout (all in css pixels: the camera is set so that 1 world unit = 1 px at z = 0) */
+  var W = 1, H = 1, D = 1, mobile = false;
+  var heroC = { x: 0, y: 0 }, Rmax = 100, ringR = [60, 80, 100], ro = 30, heroCardH = 100;
+  var hc = 400, CWc = 320, sp = 340, deckCy = 0;
+  var arcs = [];
+  function ringMesh(r, th, color, arc) {
+    var m = new THREE.Mesh(new THREE.RingGeometry(Math.max(0.1, r - th / 2), r + th / 2, 160, 1, 0, arc || Math.PI * 2), new THREE.MeshBasicMaterial({ color: color }));
+    return m;
+  }
+  function clearGroup(g) { while (g.children.length) { var o = g.children[0]; g.remove(o); if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); } }
+  function layout() {
+    W = window.innerWidth; H = window.innerHeight; mobile = W < 760;
+    sgn = lang === 'ar' ? -1 : 1;
+    renderer.setSize(W, H, false);
+    camera.aspect = W / H; D = (H / 2) / Math.tan(FOV * Math.PI / 360); camera.position.z = D; camera.updateProjectionMatrix();
+    var barH = els.bar.offsetHeight, capH = els.cap.offsetHeight || (mobile ? 190 : 150);
+    /* hero region (beside the welcome column) */
+    var rw, rh, cxp, cyp;
+    if (mobile) { var hh = els.hero.offsetHeight || H * 0.34; rw = W; rh = H - barH - hh; cxp = W / 2; cyp = barH + rh / 2; }
+    else { var tw = els.hero.offsetWidth || Math.min(600, W * 0.44); rw = W - tw; rh = H - barH; cxp = lang === 'ar' ? rw / 2 : tw + rw / 2; cyp = barH + rh / 2; }
+    heroC.x = cxp - W / 2; heroC.y = H / 2 - cyp;
+    Rmax = Math.min(rw, rh) / 2 * 0.94;
+    ringR = [Rmax * 0.54, Rmax * 0.76, Rmax * 0.98];
+    ro = Math.max(20, Rmax * 0.085);
+    heroCardH = Rmax * (mobile ? 0.74 : 0.7);
+    /* deck */
+    var ah = H - barH - capH;
+    deckCy = H / 2 - (barH + ah / 2);
+    hc = Math.min(ah * 0.86, (mobile ? W * 0.6 : W * 0.27) / 0.8);
+    CWc = hc * 0.8; sp = mobile ? CWc * 0.8 : CWc * 1.07;
+    cards.forEach(function (c) { c.f.scale.set(CWc, hc, 1); c.b.scale.set(CWc, hc, 1); });
+    /* rings */
+    clearGroup(ringsHero); arcs = [];
+    ringR.forEach(function (r, k) { ringsHero.add(ringMesh(r, 1.4, 0x4A413A)); var a = ringMesh(r, 3, 0xC2187A, 0.9 + k * 0.25); a.userData.k = k; ringsHero.add(a); arcs.push(a); });
+    clearGroup(ringsDeck);
+    var z = -320, f = (D + 320) / D;
+    [0.34, 0.5, 0.68].forEach(function (rr, k) { var r = Math.min(W, H * 1.6) * rr * f; ringsDeck.add(ringMesh(r, 1.6 * f, 0x2E2621)); if (k === 1) { var a = ringMesh(r, 3.2 * f, 0xC2187A, 0.7); a.userData.deck = true; ringsDeck.add(a); } });
+    ringsDeck.position.set(0, deckCy, z);
+    ringsHero.position.set(heroC.x, heroC.y, -2);
+    halo.scale.set(CWc * 1.08, hc * 1.06, 1); halo.position.set(0, deckCy, -6);
+    dust.scale.set(W * 0.72, H * 0.62, 1);
+  }
+
+  /* state */
+  var posCur = S.pos, heroT = 0, introT = 0, started = false, coverT = 0, cover = 0, time = 0, last = 0;
+  var px = 0, py = 0, tpx = 0, tpy = 0;
+  var hoverUntil = 0, demoUntil = 0, ptr = null, hovered = null, tipOrb = -1;
+  function eio(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function eout(t) { return 1 - Math.pow(1 - t, 3); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function setK(mat, k) { mat.color.setRGB(k, k, k); }
+
+  function tick(now) {
+    requestAnimationFrame(tick);
+    var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now; time += dt;
+    var tgt = S.view === 'hero' ? 0 : 1;
+    heroT += Math.max(-dt / 1.1, Math.min(dt / 1.1, tgt - heroT)); if (REDUCED) heroT = tgt;
+    var he = eio(heroT);
+    if (started) introT = Math.min(1, introT + dt / (REDUCED ? 0.2 : 2.6));
+    var ik = eout(introT);
+    coverT += (cover - coverT) * (1 - Math.exp(-dt * 7));
+    posCur += (S.pos - posCur) * (1 - Math.exp(-dt * (REDUCED ? 60 : 5.2)));
+    px += (tpx - px) * (1 - Math.exp(-dt * 3)); py += (tpy - py) * (1 - Math.exp(-dt * 3));
+    var vis = (1 - coverT) * ik;
+
+    camera.position.set(px * 22, -py * 14, D * (1 + 0.55 * (1 - ik) - 0.2 * coverT));
+    camera.lookAt(0, 0, 0);
+
+    var now2 = performance.now();
+    var wantFlip = S.view === 'deck' && (hoverUntil > now2 || tapFlip || demoUntil > now2);
+
+    cards.forEach(function (c, i) {
+      var d = i - posCur, ad = Math.abs(d), cd = Math.max(-2, Math.min(2, d));
+      var s = ad <= 1 ? 1 - 0.2 * ad : 0.8 - 0.2 * (Math.min(ad, 2) - 1);
+      var x = sgn * sp * cd, y = deckCy + Math.sin(time * 0.9 + i) * 3, z = -Math.min(ad, 2) * hc * 0.45;
+      var ry = -0.52 * Math.max(-1.2, Math.min(1.2, sgn * cd));
+      var k = ad <= 1 ? 1 - 0.5 * ad : Math.max(0, 0.5 * (2 - ad));
+      if (i === 0) {
+        var hs = heroCardH / hc;
+        x = lerp(heroC.x, x, he); y = lerp(heroC.y, y, he); s = lerp(hs, s, he); z = lerp(0, z, he); ry = lerp(0, ry, he); k = lerp(1, k, he);
+      } else { k *= he; s *= 0.55 + 0.45 * he; z -= (1 - he) * 260; }
+      k *= vis;
+      c.g.visible = k > 0.015;
+      if (!c.g.visible) return;
+      c.g.position.set(x, y, z); c.g.scale.set(s, s, 1); c.g.rotation.y = ry;
+      var ft = (i === S.pos && wantFlip && Math.abs(posCur - S.pos) < 0.2) ? 1 : 0;
+      c.flip += Math.max(-dt / 0.7, Math.min(dt / 0.7, ft - c.flip)); if (REDUCED) c.flip = ft;
+      c.fl.rotation.y = Math.PI * eio(c.flip);
+      setK(c.fm, k); setK(c.bm, k);
+    });
+
+    var hk = (1 - he) * vis;
+    ringsHero.visible = hk > 0.01;
+    if (ringsHero.visible) {
+      ringsHero.scale.set(1 + (1 - ik) * 0.4, 1 + (1 - ik) * 0.4, 1);
+      ringsHero.children.forEach(function (m, n) {
+        var isArc = m.userData.k !== undefined;
+        if (isArc) { m.rotation.z = time * (0.25 + m.userData.k * 0.1) * (m.userData.k === 1 ? -1 : 1) + m.userData.k * 2; m.material.color.copy(C.fx).multiplyScalar(hk); }
+        else m.material.color.copy(C.line).multiplyScalar(hk);
+      });
+    }
+    orbs.forEach(function (o) {
+      var a = o.a0 + o.dir * o.sp * time, R = ringR[o.ring];
+      o.hover += ((hovered && hovered.orb === o.j ? 1 : 0) - o.hover) * (1 - Math.exp(-dt * 10));
+      var sc = ro * (1 + 0.35 * o.hover) * (0.3 + 0.7 * ik);
+      o.g.visible = hk > 0.02;
+      if (!o.g.visible) return;
+      o.g.position.set(heroC.x + Math.cos(a) * R, heroC.y + Math.sin(a) * R, 6);
+      o.g.scale.set(sc, sc, 1);
+      var k = hk * (0.78 + 0.22 * o.hover);
+      setK(o.m.material, k);
+      o.rm.material.color.copy(o.hover > 0.5 ? C.fxl : C.paper).multiplyScalar(hk);
+    });
+    ringsDeck.visible = he * vis > 0.01;
+    if (ringsDeck.visible) ringsDeck.children.forEach(function (m) {
+      if (m.userData.deck) { m.rotation.z = -time * 0.07; m.material.color.copy(C.fx).multiplyScalar(he * vis * 0.9); }
+      else m.material.color.copy(C.deep).multiplyScalar(he * vis);
+    });
+    halo.visible = he * vis > 0.05;
+    halo.material.color.copy(C.fxl).multiplyScalar(he * vis * 0.9);
+    dmat.opacity = 0.5 * ik * (1 - coverT);
+    if (!REDUCED) { for (var q = 0; q < DUST; q++) { var yy = dpos[q * 3 + 1] + dt * dspd[q]; if (yy > 1) yy = -1; dpos[q * 3 + 1] = yy; } dgeo.attributes.position.needsUpdate = true; }
+
+    /* hover (desktop) */
+    if (ptr) {
+      var u = pick(ptr.x, ptr.y);
+      hovered = u;
+      if (u && u.card !== undefined && S.view === 'deck' && u.card === S.pos && Math.abs(posCur - S.pos) < 0.2 && CAN_HOVER) hoverUntil = now2 + 260;
+      var hot = !!u; setHot(hot || !!(ptr.el));
+      if (u && u.orb !== undefined && S.view === 'hero') {
+        if (tipOrb !== u.orb) { tipOrb = u.orb; els.tip.textContent = P(DECK[u.orb]).t; els.tip.hidden = false; }
+        els.tip.style.left = Math.round(ptr.x - els.tip.offsetWidth / 2) + 'px'; els.tip.style.top = Math.round(ptr.y + 34) + 'px';
+      } else if (tipOrb !== -1) { tipOrb = -1; els.tip.hidden = true; }
+    }
+    renderer.render(scene, camera);
+  }
+
+  var ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  function pick(cx, cy) {
+    if (!els.detail.hidden || els.about.classList.contains('open')) return null;
+    var r = els.stage.getBoundingClientRect();
+    mouse.x = ((cx - r.left) / r.width) * 2 - 1; mouse.y = -((cy - r.top) / r.height) * 2 + 1;
+    ray.setFromCamera(mouse, camera);
+    var list = [];
+    if (S.view === 'hero') { if (cards[0].g.visible) list.push(cards[0].f); orbs.forEach(function (o) { if (o.g.visible) list.push(o.m); }); }
+    else cards.forEach(function (c) { if (c.g.visible) { list.push(c.f); list.push(c.b); } });
+    var h = ray.intersectObjects(list, false)[0];
+    return h ? h.object.userData : null;
+  }
+  function onTap(cx, cy) {
+    var u = pick(cx, cy); if (!u) return;
+    if (S.view === 'hero') { if (u.orb !== undefined) enterDeck(u.orb); else if (u.card === 0) enterDeck(0); return; }
+    if (u.card === undefined) return;
+    if (u.card !== S.pos) { setIndex(u.card); return; }
+    if (CAN_HOVER || tapFlip) openDetail(DECK[S.pos]); else tapFlip = true;
+  }
+
+  var drag = null, wheelAcc = 0, wheelT = 0;
+  els.stage.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, y: e.clientY }; });
+  els.stage.addEventListener('pointerup', function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { if (S.view === 'deck') step(dx * sgn < 0 ? 1 : -1); else enterDeck(1); }
+    else if (Math.abs(dx) < 12 && Math.abs(dy) < 12) onTap(e.clientX, e.clientY);
+  });
+  els.stage.addEventListener('pointercancel', function () { drag = null; });
+  els.stage.addEventListener('pointerleave', function () { ptr = null; hovered = null; hoverUntil = 0; if (tipOrb !== -1) { tipOrb = -1; els.tip.hidden = true; } setHot(false); });
+  window.addEventListener('pointermove', function (e) {
+    tpx = (e.clientX / window.innerWidth) * 2 - 1; tpy = (e.clientY / window.innerHeight) * 2 - 1;
+    if (e.target === els.stage && e.pointerType !== 'touch') ptr = { x: e.clientX, y: e.clientY, el: false };
+    else if (ptr) { ptr = null; hovered = null; hoverUntil = 0; if (tipOrb !== -1) { tipOrb = -1; els.tip.hidden = true; } }
+  });
+  window.addEventListener('wheel', function (e) {
+    if (mode !== 'gallery' || !els.detail.hidden || els.about.classList.contains('open')) return;
+    var t = performance.now(); if (t - wheelT < 650) return;
+    var dd = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX * sgn * -1;
+    wheelAcc += dd; if (Math.abs(wheelAcc) < 40) return;
+    var dir = wheelAcc > 0 ? 1 : -1; wheelAcc = 0; wheelT = t;
+    if (S.view === 'hero') { if (dir > 0) enterDeck(1); } else step(dir);
+  }, { passive: true });
+
+  function resize() { layout(); }
+  var resizeT;
+  window.addEventListener('resize', function () { clearTimeout(resizeT); resizeT = setTimeout(function () { if (mode === 'gallery') resize(); }, 140); });
+
+  layout(); redrawBacks();
+  requestAnimationFrame(tick);
+  return {
+    resize: resize,
+    relayout: function () { redrawBacks(); resize(); },
+    redraw: redrawBacks,
+    cover: function (v) { cover = v ? 1 : 0; },
+    start: function () { started = true; },
+    demo: function () { demoUntil = performance.now() + 2300; },
+    hot: function () { return !!hovered; }
+  };
+}
+
+function fail(e) {
+  try { console.error('3D gallery unavailable', e); } catch (x) {}
+  gl = null; setMode('list');
+  els.intro.classList.add('off');
+}
+
+/* ---------- start ---------- */
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+window.scrollTo(0, 0);
+S.view = 'hero'; body.setAttribute('data-view', 'hero');
+applyLang();
+var fontsP = document.fonts && document.fonts.load ? Promise.all([
+  document.fonts.load('500 60px "Reem Kufi"', 'أ'), document.fonts.load('400 30px "IBM Plex Sans Arabic"', 'أ'), document.fonts.load('500 60px "Cormorant Garamond"', 'A')
+]).catch(function () {}) : Promise.resolve();
+fontsP.then(function () { setBarH(); if (gl) { gl.relayout(); } });
+
+try {
+  gl = init3D();
+  document.documentElement.style.overflow = 'hidden'; body.style.overflow = 'hidden';
+  setBarH(); gl.resize();
+  var wait = REDUCED ? 300 : 1900;
+  setTimeout(function () { els.intro.classList.add('off'); if (gl) { gl.relayout(); gl.start(); } }, wait);
+} catch (e) {
+  fail(e);
+}
+})();
+</script>
+
+</body>
+</html>
